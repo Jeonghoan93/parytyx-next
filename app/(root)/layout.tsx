@@ -1,5 +1,6 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
+import MobileFooter from "@/components/shared/MobileFooter";
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
       <Header />
       <main className="pt-[57pt] flex-1">{children}</main>
       <Footer />
+      <MobileFooter />
     </div>
   );
 }
