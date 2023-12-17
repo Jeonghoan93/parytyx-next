@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LineContainer from "./LineContainer";
+import LineContainer from "../ui/line-container";
 
 interface LinkBoxProps {
   icon: React.ReactNode;

@@ -1,10 +1,10 @@
 import Collection from "@/components/shared/Collection";
-import LineContainer from "@/components/shared/LineContainer";
 import LinkBox from "@/components/shared/LinkBox";
 import { Button } from "@/components/ui/button";
+import Container from "@/components/ui/container";
+import LineContainer from "@/components/ui/line-container";
 import { getEventsByUser } from "@/lib/actions/event.actions";
 import { getOrdersByUser } from "@/lib/actions/order.actions";
-import { IOrder } from "@/lib/database/models/order.model";
 import { SearchParamProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import Link from "next/link";
@@ -32,22 +32,11 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
 
   const orders = await getOrdersByUser({ userId, page: ordersPage });
 
-  const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
   const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
 
   return (
     <>
-      <div
-        className="
-        max-w-[2520px]
-        mx-auto
-        xl:px-20
-        md:px-10
-        sm:px-2
-        px-4
-        pt-5
-      "
-      >
+      <Container>
         <div
           className="
           pb-10
@@ -266,7 +255,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Events Organized */}
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">

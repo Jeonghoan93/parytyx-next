@@ -11,7 +11,7 @@ interface NavigationItemProps {
 const NavigationItem = ({ label, path }: NavigationItemProps) => {
   return (
     <Link href={path}>
-      <div className="cursor-pointer font-semibold mb-1 block text-gray-600 hover:underline">
+      <div className="p-regular-14 font-semibold mb-2 hover:underline">
         {label}
       </div>
     </Link>
@@ -19,23 +19,29 @@ const NavigationItem = ({ label, path }: NavigationItemProps) => {
 };
 
 const FooterSectionTitle = ({ title }: { title: string }) => {
-  return (
-    <div className="mb-2">
-      <p className="text-[14pt] font-extrabold text-black">{title}</p>
-    </div>
-  );
+  return <div className="mb-3 p-bold-16">{title}</div>;
 };
 
 const Footer = () => {
-  const companyMenu: Array<NavigationItemProps> = [
-    { label: "Investor", path: "/investor" },
-    { label: "Careers", path: "/careers" },
+  const Info: Array<NavigationItemProps> = [
+    { label: "Pricing", path: "/events/create" },
+    { label: "Cancellations", path: "/help" },
   ];
 
-  const contactMenu = [
+  const Hosting: Array<NavigationItemProps> = [
+    { label: "Sell tickets online", path: "/events/create" },
+    { label: "Get paid online", path: "/events/create" },
+    { label: "QR codes for check-in", path: "/events/create" },
+  ];
+
+  const Company = [
     {
-      label: "LinkedIn",
-      path: "https://www.linkedin.com/in/jimmy-h-199814242/",
+      label: "Career",
+      path: "/careers",
+    },
+    {
+      label: "Investors",
+      path: "/investors",
     },
   ];
 
@@ -62,11 +68,11 @@ const Footer = () => {
                     PARTY<span className="text-red-700">X</span>
                   </span>
                 </Link>
-                <span className="mb-4 font-semibold">Stockholm, Sweden</span>
+                <span className="mb-4 p-semibold-14">Europe</span>
               </div>
 
               <div className="flex flex-col gap-2 items-start">
-                <span className="font-semibold">Let's Connect</span>
+                <span className="p-regular-14">Let's Connect</span>
 
                 <div className="flex flex-row gap-3 items-center">
                   <span className="cursor-pointer">
@@ -84,7 +90,7 @@ const Footer = () => {
               </div>
 
               <div className="flex flex-col gap-2 items-start">
-                <span className="font-semibold">Download Our Apps</span>
+                <span className="p-regular-14">Download Our Apps</span>
 
                 <div className="flex flex-row gap-3 items-center">
                   <span className="cursor-pointer">
@@ -109,17 +115,26 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
         <div className="w-full mt-10 md:mt-0 md:w-3/5 px-2">
           <div className="flex flex-wrap -mx-2">
             <div className="w-full md:w-1/3 p-3">
-              <FooterSectionTitle title="Company" />
-              {companyMenu.map(({ label, path }, index) => (
+              <FooterSectionTitle title="Info" />
+              {Info.map(({ label, path }, index) => (
                 <NavigationItem key={index} label={label} path={path} />
               ))}
             </div>
+
             <div className="w-full md:w-1/3 p-3">
-              <FooterSectionTitle title="Contact" />
-              {contactMenu.map(({ label, path }, index) => (
+              <FooterSectionTitle title="Hosting" />
+              {Hosting.map(({ label, path }, index) => (
+                <NavigationItem key={index} label={label} path={path} />
+              ))}
+            </div>
+
+            <div className="w-full md:w-1/3 p-3">
+              <FooterSectionTitle title="Company" />
+              {Company.map(({ label, path }, index) => (
                 <NavigationItem key={index} label={label} path={path} />
               ))}
             </div>

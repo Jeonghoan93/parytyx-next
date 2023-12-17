@@ -3,11 +3,11 @@ import { BsPersonFill } from "react-icons/bs";
 
 export const headerLinks = [
   {
-    label: "Home",
-    route: "/",
+    label: "Find party",
+    route: "/events",
   },
   {
-    label: "Create Event",
+    label: "List party",
     route: "/events/create",
   },
   {
