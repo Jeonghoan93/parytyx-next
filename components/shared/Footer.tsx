@@ -34,7 +34,11 @@ const Footer = () => {
     { label: "QR codes for check-in", path: "/events/create" },
   ];
 
-  const Company = [
+  const PartyX = [
+    {
+      label: "Ambitions",
+      path: "/ambitions",
+    },
     {
       label: "Career",
       path: "/careers",
@@ -64,11 +68,13 @@ const Footer = () => {
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <Link href={"/"}>
-                  <span className="cursor-pointer text-[16pt] font-extrabold">
-                    PARTY<span className="text-red-700">X</span>
+                  <span className="p-bold-16">
+                    Build your social network from 0
                   </span>
                 </Link>
-                <span className="mb-4 p-semibold-14">Europe</span>
+                <span className="mb-4 p-regular-14">
+                  At place you like, with people you fit in
+                </span>
               </div>
 
               <div className="flex flex-col gap-2 items-start">
@@ -133,8 +139,8 @@ const Footer = () => {
             </div>
 
             <div className="w-full md:w-1/3 p-3">
-              <FooterSectionTitle title="Company" />
-              {Company.map(({ label, path }, index) => (
+              <FooterSectionTitle title="PartyX" />
+              {PartyX.map(({ label, path }, index) => (
                 <NavigationItem key={index} label={label} path={path} />
               ))}
             </div>

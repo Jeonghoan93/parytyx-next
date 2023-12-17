@@ -200,6 +200,10 @@ body {
   }
 
   /* 12 */
+  .p-bold-12 {
+    @apply text-[12px] font-bold leading-[20px];
+  }
+
   .p-regular-12 {
     @apply text-[12px] font-normal leading-[20px];
   }

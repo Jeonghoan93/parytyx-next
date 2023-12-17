@@ -76,10 +76,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                       <span className="text-[15pt] text-gray-50 font-extrabold">
                         PartyX VIP
                       </span>
-                      <span className="text-[10pt] font-bold px-3 text-gray-100">
+                      <span className="p-regular-12 text-gray-100">
                         Get exclusive access to the best parties in town
                       </span>
-                      <span className="cursor-pointer w-[100px] shadow-md rounded-xl py-1 bg-white text-black text-[10pt] font-semibold">
+                      <span className="cursor-pointer w-[100px] shadow-md rounded-xl py-1 bg-white p-medium-12 text-black">
                         Upgrade
                       </span>
                     </div>
@@ -105,7 +105,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                       </span>
                     </div>
 
-                    <span className="cursor-pointer border-[1pt] text-[10pt] font-semibold text-gray-800 rounded-xl py-2 px-4 border-gray-800">
+                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
                       Complete profile
                     </span>
                   </section>
@@ -131,7 +131,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                       </span>
                     </div>
 
-                    <span className="cursor-pointer border-[1pt] text-[10pt] font-semibold text-gray-800 rounded-xl py-2 px-4 border-gray-800">
+                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
                       Add a Video Prompt
                     </span>
                   </section>
@@ -155,7 +155,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                       </span>
                     </div>
 
-                    <span className="cursor-pointer border-[1pt] text-[10pt] font-semibold text-gray-800 rounded-xl py-2 px-4 border-gray-800">
+                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
                       Verify me
                     </span>
                   </section>
@@ -190,9 +190,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                         </div>
 
                         <div className="cursor-pointer py-1 px-2 border-[1px] rounded-md border-neutral-400">
-                          <span className="text-[10pt] font-semibold">
-                            Message
-                          </span>
+                          <span className="p-medium-12">Message</span>
                         </div>
                       </div>
                     </div>
