@@ -1,16 +1,15 @@
 "use client";
 
+import { footerLink } from "@/constants";
 import useHandleScroll from "@/src/hooks/useHandleScroll";
-import { useState } from "react";
-import { BiSearch, BiSolidHome } from "react-icons/bi";
-import { BsPersonFill } from "react-icons/bs";
-
-type ActiveButton = "home" | "search" | "account" | null;
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 const MobileFooter: React.FC = () => {
   const hideNav = useHandleScroll();
 
-  const [activeButton, setActiveButton] = useState<ActiveButton>(null);
+  const pathname = usePathname();
 
   return (
     <div
@@ -20,69 +19,32 @@ const MobileFooter: React.FC = () => {
       }`}
     >
       <div className="flex justify-around items-center h-full px-4">
-        <div
-          className="flex flex-col items-center gap-1 cursor-pointer"
-          onClick={() => {
-            setActiveButton("home");
-          }}
-        >
-          <span>
-            <BiSolidHome
-              size={18}
-              color={activeButton === "search" ? "black" : "gray"}
-            />
-          </span>
+        {footerLink.map((link) => {
+          const isActive = pathname === link.route;
+          const IconComponent = link.icon;
 
-          <span
-            className={`text-[8pt] font-semibold ${
-              activeButton === "home" ? "text-black" : "text-gray-600"
-            }`}
-          >
-            Home
-          </span>
-        </div>
+          return (
+            <Link key={link.route} href={link.route}>
+              <li
+                className={`${
+                  isActive && "text-primary-500"
+                } flex flex-col items-center gap-1 cursor-pointer`}
+              >
+                <IconComponent size={18} color={isActive ? "black" : "gray"} />
 
-        <div
-          className="flex flex-col items-center gap-1 cursor-pointer"
-          onClick={() => {
-            setActiveButton("search");
-          }}
-        >
-          <span>
-            <BiSearch
-              size={18}
-              color={activeButton === "search" ? "black" : "gray"}
-            />
-          </span>
-          <span
-            className={`text-[8pt] font-semibold ${
-              activeButton === "search" ? "text-black" : "text-gray-600"
-            }`}
-          >
-            Search
-          </span>
-        </div>
-
-        <div
-          className="flex flex-col items-center gap-1 cursor-pointer"
-          onClick={() => {
-            setActiveButton("account");
-          }}
-        >
-          <span>
-            <BsPersonFill
-              size={18}
-              color={activeButton === "account" ? "black" : "gray"}
-            />
-          </span>
-          <span
-            className={`text-[8pt] font-semibold ${
-              activeButton === "account" ? "text-black" : "text-gray-600"
-            }`}
-          >
-            Account
-          </span>
-        </div>
+                <span
+                  className={`text-[8pt] ${
+                    isActive
+                      ? "text-black font-semibold"
+                      : "text-gray-500 font-light"
+                  } `}
+                >
+                  {link.label}
+                </span>
+              </li>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
