@@ -337,6 +337,10 @@ body {
   }
 
   /* 12 */
+  .p-regular-12 {
+    @apply text-[12px] font-normal leading-[20px];
+  }
+
   .p-medium-12 {
     @apply text-[12px] font-medium leading-[20px];
   }
