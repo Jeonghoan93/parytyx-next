@@ -69,11 +69,12 @@ const Footer = () => {
               <div className="flex flex-col gap-2">
                 <Link href={"/"}>
                   <span className="p-bold-16">
-                    Build your social network from 0
+                    Party
+                    <span className="text-red-700">X</span>
                   </span>
                 </Link>
                 <span className="mb-4 p-regular-14">
-                  At place you like, with people you fit in
+                  The world's most powerful event platform
                 </span>
               </div>
 
@@ -102,7 +103,7 @@ const Footer = () => {
                   <span className="cursor-pointer">
                     <img
                       src={"/assets/images/appleAppDownload.svg"}
-                      style={{ height: "30px" }}
+                      style={{ height: "33px" }}
                       className="object-cover w-full"
                       alt="Image"
                     />
@@ -111,7 +112,7 @@ const Footer = () => {
                   <span className="cursor-pointer">
                     <img
                       src={"/assets/images/androidAppDownload.svg"}
-                      style={{ height: "30px" }}
+                      style={{ height: "33px" }}
                       className="object-cover w-full"
                       alt="Image"
                     />

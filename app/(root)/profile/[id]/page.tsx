@@ -1,3 +1,5 @@
+import IconItemCard from "@/components/profile/IconItemCard";
+import PhotoItemCard from "@/components/profile/PhotoItemCard";
 import Collection from "@/components/shared/Collection";
 import LinkBox from "@/components/shared/LinkBox";
 import { Button } from "@/components/ui/button";
@@ -54,112 +56,33 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
             "
             >
               <div className="flex flex-col gap-3 col-span-4 mb-3">
-                <section className="w-full h-[40vh] overflow-hidden border-[1px] border-neutral-200 shadow relative rounded-lg">
-                  <section className="w-full h-[40vh] overflow-hidden relative">
-                    <img
-                      src={"assets/images/upgrade.jpeg"}
-                      style={{ width: "100%", height: "100%" }}
-                      className="object-cover w-full"
-                      alt="Image"
-                    />
-                    <div
-                      className={"absolute inset-0 bg-black opacity-50"}
-                    ></div>{" "}
-                    {/* This div acts as the overlay */}
-                  </section>
+                <PhotoItemCard
+                  img={"/assets/images/festival.jpg"}
+                  title="PartyX VIP"
+                  subtitle="Get exclusive access to the best parties in town"
+                  buttonText="Upgrade"
+                />
 
-                  <section
-                    style={{ width: "100%", height: "100%", top: 0, left: 0 }}
-                    className="absolute object-cover w-full items-center justify-center flex flex-col gap-4 z-1"
-                  >
-                    <div className="text-white flex flex-col items-center text-center gap-2">
-                      <span className="text-[15pt] text-gray-50 font-extrabold">
-                        PartyX VIP
-                      </span>
-                      <span className="p-regular-12 text-gray-100">
-                        Get exclusive access to the best parties in town
-                      </span>
-                      <span className="cursor-pointer w-[100px] shadow-md rounded-xl py-1 bg-white p-medium-12 text-black">
-                        Upgrade
-                      </span>
-                    </div>
-                  </section>
-                </section>
+                <IconItemCard
+                  icon={<AiOutlineAppstoreAdd size={26} />}
+                  title="Let people know you better"
+                  subtitle="Complete profile to have experience more possibility."
+                  buttonText="Complete profile"
+                />
 
-                <LineContainer>
-                  <section className="flex flex-col items-center gap-3">
-                    <span className="bg-gray-200 rounded-[100%] p-2">
-                      <AiOutlineAppstoreAdd size={26} />
-                    </span>
+                <IconItemCard
+                  icon={<BiVideoPlus size={26} />}
+                  title="Come to life with video"
+                  subtitle="Adding a video to your profile shows your personality in action."
+                  buttonText="Add a Video Prompt"
+                />
 
-                    <div className="flex flex-col gap-1 text-center">
-                      <span className="p-semibold-14">
-                        Let people know you better
-                      </span>
-
-                      <span
-                        style={{ maxWidth: "260px" }}
-                        className="p-regular-12"
-                      >
-                        Complete profile to have experience more possibility.
-                      </span>
-                    </div>
-
-                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
-                      Complete profile
-                    </span>
-                  </section>
-                </LineContainer>
-
-                <LineContainer>
-                  <section className="flex flex-col items-center gap-3">
-                    <span className="bg-gray-200 rounded-[100%] p-2">
-                      <BiVideoPlus size={26} />
-                    </span>
-
-                    <div className="flex flex-col gap-1 text-center">
-                      <span className="p-semibold-14">
-                        Come to life with video
-                      </span>
-
-                      <span
-                        style={{ maxWidth: "260px" }}
-                        className="p-regular-12"
-                      >
-                        Adding a video to your profile shows your personality in
-                        action.
-                      </span>
-                    </div>
-
-                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
-                      Add a Video Prompt
-                    </span>
-                  </section>
-                </LineContainer>
-
-                <LineContainer>
-                  <section className="flex flex-col items-center gap-3">
-                    <span className="bg-gray-200 rounded-[100%] p-2">
-                      <BsPersonVcard size={26} />
-                    </span>
-
-                    <div className="flex flex-col gap-1 text-center">
-                      <span className="p-semibold-14">Be a trusted member</span>
-
-                      <span
-                        style={{ maxWidth: "260px" }}
-                        className="p-regular-12"
-                      >
-                        Be part of the verified member and access for more range
-                        of parties.
-                      </span>
-                    </div>
-
-                    <span className="cursor-pointer border-[1pt] p-medium-12 text-gray-800 rounded-xl py-2 px-4 border-gray-800">
-                      Verify me
-                    </span>
-                  </section>
-                </LineContainer>
+                <IconItemCard
+                  icon={<BsPersonVcard size={26} />}
+                  title="Be a trusted member"
+                  subtitle="Be part of the verified member and access for more range of parties."
+                  buttonText="Verify me"
+                />
 
                 <LineContainer>
                   <section className="flex flex-col gap-3">
@@ -215,7 +138,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                     icon={<MdOutlineSpaceDashboard size={28} />}
                     title="Host Dashboard"
                     desc="Manage your events"
-                    href="/profile"
+                    href={`/profile/${userId}/host`}
                   />
                   <LinkBox
                     icon={<BiMessageSquareDetail size={28} />}

@@ -19,7 +19,7 @@ const MobileFooter: React.FC = () => {
       }`}
     >
       <div className="flex justify-around items-center h-full px-4">
-        {footerLink.map((link) => {
+        {footerLink("userId").map((link) => {
           const isActive = pathname === link.route;
           const IconComponent = link.icon;
 
