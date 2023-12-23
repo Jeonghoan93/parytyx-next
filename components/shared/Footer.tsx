@@ -40,7 +40,7 @@ const Footer = () => {
       path: "/ambitions",
     },
     {
-      label: "Career",
+      label: "Careers",
       path: "/careers",
     },
     {
