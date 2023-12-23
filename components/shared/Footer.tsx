@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FaFacebookSquare, FaInstagramSquare, FaTiktok } from "react-icons/fa";
+import { BiSolidMessageRounded } from "react-icons/bi";
+import { FaLocationArrow } from "react-icons/fa";
 
 interface NavigationItemProps {
   label: string;
@@ -64,8 +65,8 @@ const Footer = () => {
     >
       <div className="flex flex-wrap">
         <div className="w-full md:w-2/5 px-2 mb-3 md:mb-0">
-          <div className="w-full md:w-90 flex flex-col gap-2">
-            <div className="flex flex-col gap-5">
+          <div className="w-full md:w-90 flex flex-col gap-2 h-[200px]">
+            <div className="flex flex-col h-full justify-between">
               <div className="flex flex-col gap-2">
                 <Link href={"/"}>
                   <span className="p-bold-16">
@@ -73,26 +74,23 @@ const Footer = () => {
                     <span className="text-red-700">X</span>
                   </span>
                 </Link>
-                <span className="mb-4 p-regular-14">
-                  The world's most powerful event platform
-                </span>
-              </div>
 
-              <div className="flex flex-col gap-2 items-start">
-                <span className="p-regular-14">Let's Connect</span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex flex-row gap-1 items-center">
+                    <span className="px-1">
+                      <FaLocationArrow size={10} />
+                    </span>
 
-                <div className="flex flex-row gap-3 items-center">
-                  <span className="cursor-pointer">
-                    <FaFacebookSquare size={26} />
-                  </span>
+                    <span className="p-regular-12">Sweden</span>
+                  </div>
 
-                  <span className="cursor-pointer">
-                    <FaInstagramSquare size={26} />
-                  </span>
+                  <div className="flex flex-row gap-1 items-center">
+                    <span className="px-1">
+                      <BiSolidMessageRounded size={10} />
+                    </span>
 
-                  <span className="cursor-pointer">
-                    <FaTiktok size={26} />
-                  </span>
+                    <span className="p-regular-12">English</span>
+                  </div>
                 </div>
               </div>
 
@@ -146,6 +144,10 @@ const Footer = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="w-full mt-10 md:w-3/5 px-3 md:px-2">
+          <span className="p-regular-12">© 2023 PartyX, Inc.</span>
         </div>
       </div>
     </footer>
