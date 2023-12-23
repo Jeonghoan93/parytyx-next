@@ -62,7 +62,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, booking }) => {
 
         <div className="px-2 py-1 flex flex-col gap-1">
           <div className="flex flex-row justify-between items-center">
-            <div className="font-extrabold text-[12pt]">
+            <div className="p-bold-14 sm:p-bold-16">
               {eventData.title.length > 18
                 ? `${eventData.title.slice(0, 18)}...`
                 : eventData.title}
@@ -71,17 +71,17 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, booking }) => {
               <span>
                 <AiFillHeart size={16} />
               </span>
-              <span className="font-semibold text-[12pt]">
+              <span className="p-semibold-14 sm:p-semibold-16">
                 {eventData.avgRating}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col text-gray-800 text-[11pt]">
-            <span>
+          <div className="flex flex-col">
+            <span className="p-regular-12 sm:p-regular-14 text-gray-600">
               {eventData.address.street}, {eventData.address.city}
             </span>
-            <span>
+            <span className="p-semibold-12 sm:p-semibold-14">
               {formatDate(eventData.startDate, {
                 timeIncluded: true,
                 endDate: eventData.endDate,
@@ -90,7 +90,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, booking }) => {
           </div>
 
           <div className="flex flex-row items-center gap-1">
-            <div className="font-bold">
+            <div className="p-bold-14 sm:p-bold-16">
               {eventData.currency} {price}
             </div>
             {!booking && <div className="font-light">{""}</div>}
