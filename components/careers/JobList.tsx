@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import React from "react";
 
 interface Job {
@@ -13,8 +16,9 @@ interface JobListProps {
 }
 
 const JobList: React.FC<JobListProps> = ({ jobs }) => {
-  // Group jobs by category
   const groupedJobs: { [category: string]: Job[] } = {};
+
+  const positionId = "positionId";
 
   jobs.forEach((job) => {
     if (!groupedJobs[job.category]) {
@@ -50,14 +54,13 @@ const JobList: React.FC<JobListProps> = ({ jobs }) => {
                   </div>
                 </div>
 
-                <div
-                  onClick={() => alert("Not yet!")}
-                  className="bg-gray-900 px-5 py-1 rounded cursor-pointer"
-                >
-                  <span className="text-[11pt] text-white font-semibold">
-                    APPLY
-                  </span>
-                </div>
+                <Link href={`/careers/positions/${positionId}`}>
+                  <div className="bg-gray-900 px-5 py-1 rounded cursor-pointer">
+                    <span className="text-[11pt] text-white font-semibold">
+                      APPLY
+                    </span>
+                  </div>
+                </Link>
               </div>
             </div>
           ))}
