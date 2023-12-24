@@ -11,7 +11,9 @@ export default function RootLayout({
     <div className="flex h-screen flex-col">
       <Header />
       <main className="pt-[57pt] flex-1">{children}</main>
-      <Footer />
+      <footer className="flex-1   bg-gray-100 ">
+        <Footer />
+      </footer>
       <MobileFooter />
     </div>
   );
