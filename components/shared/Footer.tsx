@@ -25,8 +25,10 @@ const FooterSectionTitle = ({ title }: { title: string }) => {
 
 const Footer = () => {
   const Info: Array<NavigationItemProps> = [
-    { label: "Pricing", path: "/events/create" },
-    { label: "Cancellations", path: "/help" },
+    { label: "About", path: "/about" },
+    { label: "Tickets", path: "/tickets" },
+    { label: "Resale", path: "/resale" },
+    { label: "Advertise", path: "/advertise" },
   ];
 
   const Hosting: Array<NavigationItemProps> = [
