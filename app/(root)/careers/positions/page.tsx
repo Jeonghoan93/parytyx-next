@@ -92,7 +92,7 @@ const PositionsPage = () => {
 
 export default PositionsPage;
 
-export const jobList = [
+const jobList = [
   {
     title: "Business Development Manager",
     location: "STOCKHOLM, SWEDEN",
