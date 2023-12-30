@@ -2,10 +2,7 @@ import IconItemCard from "@/components/profile/IconItemCard";
 import PhotoItemCard from "@/components/profile/PhotoItemCard";
 import LinkBox from "@/components/shared/LinkBox";
 import Container from "@/components/ui/container";
-import { getEventsByUser } from "@/lib/actions/event.actions";
-import { getOrdersByUser } from "@/lib/actions/order.actions";
 import { SearchParamProps } from "@/types";
-import { auth } from "@clerk/nextjs";
 import { AiOutlineAppstoreAdd, AiOutlineCreditCard } from "react-icons/ai";
 import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
 import { BsPeople, BsPerson } from "react-icons/bs";
@@ -13,16 +10,6 @@ import { CiBoxes } from "react-icons/ci";
 import { PiBoundingBoxLight } from "react-icons/pi";
 
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
-  const { sessionClaims } = auth();
-  const userId = sessionClaims?.userId as string;
-
-  const ordersPage = Number(searchParams?.ordersPage) || 1;
-  const eventsPage = Number(searchParams?.eventsPage) || 1;
-
-  const orders = await getOrdersByUser({ userId, page: ordersPage });
-
-  const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
-
   return (
     <>
       <Container>

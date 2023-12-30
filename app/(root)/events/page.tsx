@@ -1,6 +1,7 @@
 import EventCard from "@/components/EventCard";
 import Container from "@/components/ui/container";
 import { events } from "@/constants/mock-events";
+import Link from "next/link";
 
 const Events = () => {
   if (events.length === 0) {
@@ -15,7 +16,9 @@ const Events = () => {
         }
       >
         {events.map((event) => (
-          <EventCard key={event.eventId} eventData={event} />
+          <Link href={`/events/${event.eventId}`}>
+            <EventCard key={event.eventId} eventData={event} />
+          </Link>
         ))}
       </div>
     </Container>

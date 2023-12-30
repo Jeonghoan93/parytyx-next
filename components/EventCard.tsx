@@ -83,7 +83,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, booking }) => {
             </span>
             <span className="p-semibold-12 sm:p-semibold-14">
               {formatDate(eventData.startDate, {
-                timeIncluded: true,
+                timeIncluded: false,
                 endDate: eventData.endDate,
               })}
             </span>
