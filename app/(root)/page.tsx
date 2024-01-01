@@ -28,6 +28,36 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
   return (
     <>
+      <section className="w-full h-[40vh] overflow-hidden  border-neutral-200 shadow relative">
+        <section className="w-full h-[40vh] overflow-hidden relative">
+          <img
+            src="/assets/images/techno.jpg"
+            style={{ width: "100%", height: "100%" }}
+            className="object-cover w-full"
+            alt="Image"
+          />
+          <div className={"absolute inset-0 bg-black opacity-40"}></div>{" "}
+          {/* This div acts as the overlay */}
+        </section>
+
+        <section
+          style={{ width: "100%", height: "100%", top: 0, left: 0 }}
+          className="absolute object-cover w-full items-center justify-center flex flex-col gap-4 z-1"
+        >
+          <div className="text-white flex flex-col items-center text-center gap-3">
+            <span className=" text-gray-50 p-bold-20">Art</span>
+            <span className="p-medium-14 px-3 text-gray-100">
+              Uniting Humanity Through Celebratory Experiences
+            </span>
+            <Link href="/events/create">
+              <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
+                List your party
+              </span>
+            </Link>
+          </div>
+        </section>
+      </section>
+
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">

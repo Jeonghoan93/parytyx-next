@@ -7,7 +7,7 @@ const CreateEvent = () => {
   const userId = sessionClaims?.userId as string;
 
   return (
-    <div className="wrapper my-8">
+    <div className="wrapper my-2">
       <EventForm userId={userId} type="Create" />
     </div>
   );
