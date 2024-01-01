@@ -71,6 +71,30 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
+  if (eventType === "email.created") {
+    const { id, to_email_address } = evt.data;
+
+    const user = {
+      clerkId: id,
+      email: to_email_address ?? "",
+      firstName: "",
+      lastName: "",
+      photo: "",
+    };
+
+    const newUser = await createUser(user);
+
+    if (newUser) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser._id,
+        },
+      });
+    }
+
+    return NextResponse.json({ message: "OK", user: newUser });
+  }
+
   if (eventType === "user.updated") {
     const { id, image_url, first_name, last_name } = evt.data;
 
