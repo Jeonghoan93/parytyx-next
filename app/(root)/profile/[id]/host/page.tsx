@@ -2,14 +2,17 @@ import IconItemCard from "@/components/profile/IconItemCard";
 import PhotoItemCard from "@/components/profile/PhotoItemCard";
 import LinkBox from "@/components/shared/LinkBox";
 import Container from "@/components/ui/container";
-import { SearchParamProps } from "@/types";
+import { auth } from "@clerk/nextjs";
 import { AiOutlineAppstoreAdd, AiOutlineCreditCard } from "react-icons/ai";
 import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
 import { BsPeople, BsPerson } from "react-icons/bs";
 import { CiBoxes } from "react-icons/ci";
 import { PiBoundingBoxLight } from "react-icons/pi";
 
-const ProfilePage = async ({ searchParams }: SearchParamProps) => {
+const ProfilePage = () => {
+  const { sessionClaims } = auth();
+  const userId = sessionClaims?.userId as string;
+
   return (
     <>
       <Container>
@@ -68,7 +71,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
                     icon={<PiBoundingBoxLight size={28} />}
                     title="Listings"
                     desc="Past and upcoming events."
-                    href="/profile/me"
+                    href={`/profile/${userId}/host/listings`}
                   />
                   <LinkBox
                     icon={<BsPeople size={28} />}

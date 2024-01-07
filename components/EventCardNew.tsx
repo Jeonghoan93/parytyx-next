@@ -1,5 +1,6 @@
 import { IEvent } from "@/lib/database/models/event.model";
 import { formatDateTime } from "@/lib/utils";
+import Link from "next/link";
 import { useMemo } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import HeartButton from "./HeartButton";
@@ -31,8 +32,9 @@ const EventCardNew: React.FC<EventCardNewProps> = ({ eventData }) => {
             hover:shadow-lg
           "
         >
-          <img
-            className="
+          <Link href={`/events/${eventData._id}`}>
+            <img
+              className="
               object-cover 
               h-full 
               w-full 
@@ -40,9 +42,10 @@ const EventCardNew: React.FC<EventCardNewProps> = ({ eventData }) => {
               transition
               
             "
-            src={eventData.imageUrl}
-            alt="Event"
-          />
+              src={eventData.imageUrl}
+              alt="Event"
+            />
+          </Link>
           <div
             className="
             absolute

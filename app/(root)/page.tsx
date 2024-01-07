@@ -1,7 +1,5 @@
 import IconTextDesc from "@/components/IconTitleDesc";
-import CategoryFilter from "@/components/shared/CategoryFilter";
-import Collection from "@/components/shared/Collection";
-import Search from "@/components/shared/Search";
+import EventsCollection from "@/components/shared/EventsCollection";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
@@ -151,20 +149,10 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </div>
       </section>
 
-      <section
-        id="events"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
-      >
-        <h2 className="h2-bold">
-          Trust by <br /> Thousands of Events
-        </h2>
+      <section id="events" className="wrapper my-8 flex flex-col gap-7">
+        <span className="p-semibold-20">Upcoming events</span>
 
-        <div className="flex w-full flex-col gap-5 md:flex-row">
-          <Search />
-          <CategoryFilter />
-        </div>
-
-        <Collection
+        <EventsCollection
           data={events?.data}
           emptyTitle="No Events Found"
           emptyStateSubtext="Come back later"
