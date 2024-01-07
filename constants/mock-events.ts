@@ -11,7 +11,7 @@ const endDate = new Date(
   startDate.getTime() + randomHoursToAdd * 60 * 60 * 1000
 ); // 1 hour = 60 * 60 * 1000 milliseconds
 
-export const events = [
+export const eventsMock = [
   {
     host: users[0],
     eventId: 1,

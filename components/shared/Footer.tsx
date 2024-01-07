@@ -33,9 +33,9 @@ const Footer = () => {
   ];
 
   const Hosting: Array<NavigationItemProps> = [
-    { label: "Sell tickets online", path: "/events/create" },
-    { label: "Get paid online", path: "/events/create" },
-    { label: "QR codes for check-in", path: "/events/create" },
+    { label: "Sell tickets online", path: "/profile/create" },
+    { label: "Get paid online", path: "/profile/create" },
+    { label: "QR codes for check-in", path: "/profile/create" },
   ];
 
   const PartyX = [

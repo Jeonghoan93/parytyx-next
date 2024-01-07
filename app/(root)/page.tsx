@@ -49,7 +49,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
             <span className="p-medium-14 px-3 text-gray-100">
               Uniting Humanity Through Celebratory Experiences
             </span>
-            <Link href="/events/create">
+            <Link href="/profile/create">
               <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
                 List your party
               </span>

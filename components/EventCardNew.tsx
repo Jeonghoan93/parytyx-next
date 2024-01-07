@@ -1,20 +1,23 @@
+import { IEvent } from "@/lib/database/models/event.model";
+import { formatDateTime } from "@/lib/utils";
 import { useMemo } from "react";
-
-import { formatDate } from "@/src/utils/formatDate";
 import { AiFillHeart } from "react-icons/ai";
 import HeartButton from "./HeartButton";
 
-interface EventCardProps {
-  eventData: any;
+interface EventCardNewProps {
+  eventData: IEvent;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
+const EventCardNew: React.FC<EventCardNewProps> = ({ eventData }) => {
   const price = useMemo(() => {
     return eventData.price;
   }, [eventData.price]);
 
   return (
-    <div className="mb-2 col-span-1 cursor-pointer group">
+    <div
+      style={{ width: "100%", height: "100%" }}
+      className="mb-2 col-span-1 cursor-pointer group"
+    >
       <div className="flex flex-col gap-2 w-full">
         <div
           className="
@@ -29,7 +32,6 @@ const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
           "
         >
           <img
-            style={{ width: "100%", height: "100%" }}
             className="
               object-cover 
               h-full 
@@ -38,7 +40,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
               transition
               
             "
-            src={eventData.img}
+            src={eventData.imageUrl}
             alt="Event"
           />
           <div
@@ -63,28 +65,21 @@ const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
               <span>
                 <AiFillHeart size={16} />
               </span>
-              <span className="p-semibold-14 sm:p-semibold-16">
-                {eventData.avgRating}
-              </span>
+              <span className="p-semibold-14 sm:p-semibold-16">4.5</span>
             </div>
           </div>
 
           <div className="flex flex-col">
             <span className="p-regular-12 sm:p-regular-14 text-gray-600">
-              {eventData.address.street}, {eventData.address.city}
+              {eventData.location}
             </span>
             <span className="p-semibold-12 sm:p-semibold-14">
-              {formatDate(eventData.startDate, {
-                timeIncluded: false,
-                endDate: eventData.endDate,
-              })}
+              {formatDateTime(eventData.startDateTime).dateTime}
             </span>
           </div>
 
           <div className="flex flex-row items-center gap-1">
-            <div className="p-bold-14 sm:p-bold-16">
-              {eventData.currency} {price}
-            </div>
+            <div className="p-bold-14 sm:p-bold-16">SEK {price}</div>
           </div>
         </div>
       </div>
@@ -92,4 +87,4 @@ const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
   );
 };
 
-export default EventCard;
+export default EventCardNew;

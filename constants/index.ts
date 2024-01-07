@@ -9,7 +9,7 @@ export const headerLinks = (userId: string) => {
     },
     {
       label: "List party",
-      route: "/events/create",
+      route: "/profile/create",
     },
     {
       label: "My Profile",
