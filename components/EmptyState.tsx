@@ -1,5 +1,5 @@
-import Heading from "./ui/Heading";
 import Button from "./ui/button-v2";
+import Heading from "./ui/heading";
 
 interface EmptyStateProps {
   title?: string;
