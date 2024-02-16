@@ -1,10 +1,14 @@
+"use client";
+
 import IconTextDesc from "@/components/IconTitleDesc";
+import LoadingState from "@/components/LoadingState";
 import EventsCollection from "@/components/shared/EventsCollection";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaRegGrinHearts, FaSpotify } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoTicketOutline } from "react-icons/io5";
@@ -12,17 +16,40 @@ import { MdSecurityUpdateGood, MdTravelExplore } from "react-icons/md";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { TbWorld } from "react-icons/tb";
 
-export default async function Home({ searchParams }: SearchParamProps) {
+const Home = ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || "";
   const category = (searchParams?.category as string) || "";
 
-  const events = await getAllEvents({
-    query: searchText,
-    category,
-    page,
-    limit: 6,
-  });
+  const [events, setEvents] = useState<any>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedEvents = await getAllEvents({
+          query: searchText,
+          category,
+          page,
+          limit: 6,
+        });
+
+        if (fetchedEvents) {
+          setEvents(fetchedEvents);
+        }
+      } catch (error) {
+        console.error("Failed to fetch events: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [searchParams.page]);
+
+  if (isLoading) {
+    return <LoadingState />;
+  }
 
   return (
     <>
@@ -164,4 +191,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
       </section>
     </>
   );
-}
+};
+
+export default Home;

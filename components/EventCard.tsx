@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 
-import { formatDate } from "@/src/utils/formatDate";
+import { formatDateTime } from "@/lib/utils";
 import { AiFillHeart } from "react-icons/ai";
 import HeartButton from "./HeartButton";
+import FlexRow from "./ui/flex-row";
+import Text from "./ui/text";
 
 interface EventCardProps {
   eventData: any;
@@ -74,10 +76,17 @@ const EventCard: React.FC<EventCardProps> = ({ eventData }) => {
               {eventData.address.street}, {eventData.address.city}
             </span>
             <span className="p-semibold-12 sm:p-semibold-14">
-              {formatDate(eventData.startDate, {
-                timeIncluded: false,
-                endDate: eventData.endDate,
-              })}
+              <FlexRow>
+                <Text semibold extraSmall darkGray>
+                  {formatDateTime(eventData.startDate).dateOnly} -{" "}
+                  {formatDateTime(eventData.startDate).timeOnly}
+                </Text>
+                -
+                <Text semibold extraSmall darkGray>
+                  {formatDateTime(eventData.endDate).dateOnly} -{" "}
+                  {formatDateTime(eventData.endDate).timeOnly}
+                </Text>
+              </FlexRow>
             </span>
           </div>
 
