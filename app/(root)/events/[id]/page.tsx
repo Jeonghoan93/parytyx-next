@@ -4,6 +4,7 @@ import EmptyState from "@/components/EmptyState";
 import LoadingState from "@/components/LoadingState";
 import CheckoutButton from "@/components/shared/CheckoutButton";
 import Collection from "@/components/shared/Collection";
+import Button from "@/components/ui/button-v2";
 import Container from "@/components/ui/container";
 import FlexCol from "@/components/ui/flex-col";
 import FlexRow from "@/components/ui/flex-row";
@@ -16,7 +17,6 @@ import {
 import { formatDateTime } from "@/lib/utils";
 import { useWindowWidth } from "@/src/hooks/useWindowWidth";
 import { SearchParamProps } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdLocationPin } from "react-icons/md";
@@ -33,6 +33,14 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
     | undefined
   >(undefined);
   const [isLoading, setLoading] = useState(true);
+  const [guestCount, setGuestCount] = useState<number>(1);
+  const [totalPrice, setTotalPrice] = useState<number>(
+    event ? event.price * guestCount : 0
+  );
+
+  useEffect(() => {
+    setTotalPrice(event ? event.price * guestCount : 0);
+  }, [guestCount, event ? event.price : 0]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,10 +88,11 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
 
       <Container>
         <div
-          className="
+          className={`
           max-w-screen-lg 
           mx-auto
-        "
+          ${!isMobile ? "mt-7" : ""}
+        `}
         >
           <div className="flex flex-col gap-4">
             {!isMobile ? (
@@ -132,6 +141,10 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                       {event.title}
                     </Text>
 
+                    <Text semibold small>
+                      {event.category.name}
+                    </Text>
+
                     <FlexCol>
                       <Text semibold extraSmall>
                         {event.description}
@@ -142,7 +155,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
 
                 <LineContainer>
                   <FlexCol items="items-start">
-                    <FlexRow>
+                    <FlexRow items="items-center">
                       <MdLocationPin />
 
                       <Text semibold small>
@@ -155,10 +168,15 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                 </LineContainer>
 
                 <LineContainer>
-                  <FlexRow justify="justify-between">
+                  <FlexRow justify="justify-between" items="items-center">
                     <FlexCol items="items-start">
                       <Text small semibold>
-                        hosted by host name
+                        hosted by {event.organizer.firstName}{" "}
+                        {event.organizer.lastName}
+                      </Text>
+
+                      <Text extraSmall small lighGray>
+                        {event.url}
                       </Text>
 
                       <span>number of people joining...?</span>
@@ -184,7 +202,65 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                 md:col-span-3
               "
                 >
-                  booking
+                  <LineContainer>
+                    <FlexCol items="items-start" gap={5}>
+                      <FlexRow items="items-center">
+                        <Text bold medium darkGray>
+                          From
+                        </Text>
+                        <Text medium>SEK {event.price}</Text>
+                      </FlexRow>
+
+                      <FlexRow justify="justify-between" widthFull>
+                        <label
+                          htmlFor="guestCount"
+                          className="font-medium text-neutral-600"
+                        >
+                          Guests:
+                        </label>
+
+                        <select
+                          id="guestCount"
+                          value={guestCount}
+                          onChange={(e) =>
+                            setGuestCount(Number(e.target.value))
+                          }
+                          className="bg-neutral-100 border rounded-md p-1"
+                        >
+                          {[...Array(7)].map((_, i) => (
+                            <option key={i} value={i + 1}>
+                              {i + 1}
+                            </option>
+                          ))}
+                        </select>
+                      </FlexRow>
+
+                      <hr />
+
+                      <FlexRow justify="justify-between">
+                        <Text bold medium darkGray>
+                          Total
+                        </Text>
+                        <Text medium>SEK {totalPrice}</Text>
+                      </FlexRow>
+
+                      <FlexCol widthFull={true}>
+                        <CheckoutButton event={event} />
+
+                        <Button
+                          disabled={isLoading}
+                          label="Find ticket"
+                          href="/"
+                        />
+
+                        <div className="cursor-pointer px-1 py-2 relative text-center">
+                          <span className="text-[11pt] underline text-neutral-800 font-semibold">
+                            Share the event with friends
+                          </span>
+                        </div>
+                      </FlexCol>
+                    </FlexCol>
+                  </LineContainer>
                 </div>
               ) : null}
             </div>
@@ -192,86 +268,11 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
         </div>
       </Container>
 
-      <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain">
-        <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
-          <Image
-            src={event.imageUrl}
-            alt="hero image"
-            width={1000}
-            height={1000}
-            className="h-full min-h-[300px] object-cover object-center"
-          />
-
-          <div className="flex w-full flex-col gap-8 p-5 md:p-10">
-            <div className="flex flex-col gap-6">
-              <h2 className="h2-bold">{event.title}</h2>
-
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div className="flex gap-3">
-                  <p className="p-bold-20 rounded-full bg-green-500/10 px-5 py-2 text-green-700">
-                    {event.isFree ? "FREE" : `$${event.price}`}
-                  </p>
-                  <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500">
-                    {event.category.name}
-                  </p>
-                </div>
-
-                <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
-                  by{" "}
-                  <span className="text-primary-500">
-                    {event.organizer.firstName} {event.organizer.lastName}
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            <CheckoutButton event={event} />
-
-            <div className="flex flex-col gap-5">
-              <div className="flex gap-2 md:gap-3">
-                <Image
-                  src="/assets/icons/calendar.svg"
-                  alt="calendar"
-                  width={32}
-                  height={32}
-                />
-                <div className="p-medium-16 lg:p-regular-20 flex flex-wrap items-center">
-                  <p>
-                    {formatDateTime(event.startDateTime).dateOnly} -{" "}
-                    {formatDateTime(event.startDateTime).timeOnly}
-                  </p>
-                  <p>
-                    {formatDateTime(event.endDateTime).dateOnly} -{" "}
-                    {formatDateTime(event.endDateTime).timeOnly}
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-regular-20 flex items-center gap-3">
-                <Image
-                  src="/assets/icons/location.svg"
-                  alt="location"
-                  width={32}
-                  height={32}
-                />
-                <p className="p-medium-16 lg:p-regular-20">{event.location}</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <p className="p-bold-20 text-grey-600">What You'll Learn:</p>
-              <p className="p-medium-16 lg:p-regular-18">{event.description}</p>
-              <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500 underline">
-                {event.url}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* EVENTS with the same category */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <h2 className="h2-bold">Related Events</h2>
+        <Text extraLarge bold>
+          Related Events
+        </Text>
 
         <Collection
           data={relatedEvents?.data}

@@ -3,6 +3,7 @@ import React from "react";
 interface FlexRowProps {
   children: React.ReactNode;
   gap?: number;
+  widthFull?: boolean;
   items?:
     | "items-center"
     | "items-start"
@@ -21,10 +22,13 @@ interface FlexRowProps {
 const FlexRow: React.FC<FlexRowProps> = ({
   children,
   gap = 2,
-  items = "items-center",
-  justify = "justify-center",
+  items = "",
+  justify = "",
+  widthFull = false,
 }) => {
-  const className = `flex flex-row gap-${gap} ${items} ${justify}`;
+  const className = `flex flex-row gap-${gap} ${items} ${justify} ${
+    widthFull ? "w-full" : ""
+  }`;
 
   return <div className={className}>{children}</div>;
 };

@@ -2,13 +2,9 @@ import React from "react";
 
 interface FlexColProps {
   children: React.ReactNode;
+  widthFull?: boolean;
   gap?: number;
-  items?:
-    | "items-center"
-    | "items-start"
-    | "items-end"
-    | "items-baseline"
-    | "items-stretch";
+  items?: "items-start" | "items-end" | "items-baseline" | "items-stretch";
   justify?:
     | "justify-center"
     | "justify-start"
@@ -21,10 +17,13 @@ interface FlexColProps {
 const FlexCol: React.FC<FlexColProps> = ({
   children,
   gap = 2,
-  items = "items-center",
-  justify = "justify-center",
+  items = "",
+  justify = "",
+  widthFull = false,
 }) => {
-  const className = `flex flex-col gap-${gap} ${items} ${justify}`;
+  const className = `flex flex-col gap-${gap} ${items} ${justify} ${
+    widthFull ? "w-full" : ""
+  }`;
 
   return <div className={className}>{children}</div>;
 };
