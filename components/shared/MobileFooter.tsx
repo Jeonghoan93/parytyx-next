@@ -9,7 +9,7 @@ import React from "react";
 const MobileFooter: React.FC = () => {
   const hideNav = useHandleScroll();
 
-  const pathname = usePathname();
+  const path = usePathname();
 
   return (
     <div
@@ -20,7 +20,7 @@ const MobileFooter: React.FC = () => {
     >
       <div className="flex justify-around items-center h-full px-4">
         {footerLink("userId").map((link) => {
-          const isActive = pathname === link.route;
+          const isActive = path === link.route;
           const IconComponent = link.icon;
 
           return (

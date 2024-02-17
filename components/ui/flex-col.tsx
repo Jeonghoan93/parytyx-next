@@ -4,7 +4,12 @@ interface FlexColProps {
   children: React.ReactNode;
   widthFull?: boolean;
   gap?: number;
-  items?: "items-start" | "items-end" | "items-baseline" | "items-stretch";
+  items?:
+    | "items-center"
+    | "items-start"
+    | "items-end"
+    | "items-baseline"
+    | "items-stretch";
   justify?:
     | "justify-center"
     | "justify-start"

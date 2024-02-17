@@ -1,5 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import FlexCol from "./ui/flex-col";
+import FlexRow from "./ui/flex-row";
+import Text from "./ui/text";
 
 interface IconTextDescProps {
   icon: React.ReactNode;
@@ -15,16 +18,23 @@ const IconTextDesc: React.FC<IconTextDescProps> = ({
   href,
 }) => {
   return (
-    <div className="flex flex-row items-start gap-5">
-      <span>{icon}</span>
+    <FlexCol items="items-start" gap={4}>
+      <FlexRow gap={3} items="items-center">
+        {icon}
 
-      <div className="flex flex-col gap-3">
         <Link href={href || "/"}>
-          <span className="p-bold-16 hover:underline">{title}</span>
+          <span className="hover:underline">
+            <Text bold medium>
+              {title}
+            </Text>
+          </span>
         </Link>
-        <span className="p-regular-14">{desc}</span>
-      </div>
-    </div>
+      </FlexRow>
+
+      <Text extraSmall darkGray>
+        {desc}
+      </Text>
+    </FlexCol>
   );
 };
 

@@ -290,3 +290,8 @@ body {
 .react-datepicker__time-list-item--selected {
   background-color: #624cf5 !important;
 }
+
+.shadow-text {
+  color: white;
+  text-shadow: 2px 2px 3px rgba(165, 171, 171, 0.5);
+}

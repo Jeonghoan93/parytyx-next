@@ -4,6 +4,7 @@ import IconTextDesc from "@/components/IconTitleDesc";
 import LoadingState from "@/components/LoadingState";
 import EventsCollection from "@/components/shared/EventsCollection";
 import { Button } from "@/components/ui/button";
+import FlexCol from "@/components/ui/flex-col";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
 import Image from "next/image";
@@ -69,17 +70,18 @@ const Home = ({ searchParams }: SearchParamProps) => {
           style={{ width: "100%", height: "100%", top: 0, left: 0 }}
           className="absolute object-cover w-full items-center justify-center flex flex-col gap-4 z-1"
         >
-          <div className="text-white flex flex-col items-center text-center gap-3">
+          <FlexCol items="items-center" gap={4}>
             <span className=" text-gray-50 p-bold-20">Art</span>
-            <span className="p-medium-14 px-3 text-gray-100">
+            <span className="shadow-text p-medium-14">
               Uniting Humanity Through Celebratory Experiences
             </span>
+
             <Link href="/profile/create">
               <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
                 List your party
               </span>
             </Link>
-          </div>
+          </FlexCol>
         </section>
       </section>
 
