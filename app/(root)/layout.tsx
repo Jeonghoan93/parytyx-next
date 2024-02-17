@@ -14,10 +14,12 @@ export default function RootLayout({
   return (
     <div className="flex h-screen flex-col">
       <Header />
-      <main className="pt-[54pt] flex-1">{children}</main>
-      <footer className="flex-1   bg-gray-100 ">
+      <main className="pt-[54pt]">{children}</main>
+
+      <footer>
         <Footer />
       </footer>
+
       {isMobile && <MobileFooter />}
     </div>
   );

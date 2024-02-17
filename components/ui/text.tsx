@@ -14,6 +14,7 @@ interface TextProps {
   leadingTight?: boolean;
   underline?: boolean;
   whiteSpace?: "nowrap" | "normal";
+  leading?: boolean;
 }
 
 const Text: React.FC<TextProps> = ({
@@ -30,6 +31,7 @@ const Text: React.FC<TextProps> = ({
   leadingTight,
   underline,
   whiteSpace,
+  leading,
 }) => {
   let classNames = "";
   if (extraSmall) classNames += " text-[9pt]";
@@ -44,6 +46,7 @@ const Text: React.FC<TextProps> = ({
   if (leadingTight) classNames += " leading-tight";
   if (underline) classNames += " underline";
   if (whiteSpace) classNames += ` whitespace-${whiteSpace}`;
+  if (leading) classNames += " leading-tight";
 
   return <span className={classNames}>{children}</span>;
 };

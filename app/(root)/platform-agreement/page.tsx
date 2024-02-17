@@ -19,13 +19,13 @@ const PlatformAgreementPage = () => {
   return (
     <div
       className="
-        h-[60vh]
+        h-[80vh]
         flex 
         justify-center 
         items-center 
       "
     >
-      <div className={`${isMobile ? "max-w-sm" : "max-w-xl"}`}>
+      <div className={`${isMobile ? "max-w-[310px]" : "max-w-xl"}`}>
         <FlexCol items="items-start" gap={6}>
           <Text bold>PARTYX</Text>
 
