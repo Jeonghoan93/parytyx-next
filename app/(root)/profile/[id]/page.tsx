@@ -2,7 +2,9 @@ import IconItemCard from "@/components/profile/IconItemCard";
 import PhotoItemCard from "@/components/profile/PhotoItemCard";
 import LinkBox from "@/components/shared/LinkBox";
 import Container from "@/components/ui/container";
+import FlexCol from "@/components/ui/flex-col";
 import LineContainer from "@/components/ui/line-container";
+import Text from "@/components/ui/text";
 import { auth } from "@clerk/nextjs";
 import {
   AiOutlineAppstoreAdd,
@@ -71,7 +73,7 @@ const ProfilePage = () => {
               />
 
               <LineContainer>
-                <section className="flex flex-col gap-3">
+                <FlexCol gap={3}>
                   <div className="mb-2">
                     <h2 className="text-[13pt] font-bold mb-2">Friends</h2>
                     <div className="flex flex-row justify-between items-center">
@@ -89,12 +91,13 @@ const ProfilePage = () => {
 
                         {/* host name and role */}
                         <div className="flex flex-col">
-                          <span className="text-[11pt] text-gray-900 font-semibold">
+                          <Text small semibold>
                             Jimmy
-                          </span>
-                          <span className="text-[9pt] text-gray-500">
+                          </Text>
+
+                          <Text extraSmall lighGray>
                             Met at a conference
-                          </span>
+                          </Text>
                         </div>
                       </div>
 
@@ -103,7 +106,7 @@ const ProfilePage = () => {
                       </div>
                     </div>
                   </div>
-                </section>
+                </FlexCol>
               </LineContainer>
             </div>
 
@@ -113,7 +116,7 @@ const ProfilePage = () => {
                 md:col-span-3
               "
             >
-              <section className="flex flex-col gap-3">
+              <FlexCol gap={3}>
                 <LinkBox
                   icon={<IoTicketOutline size={28} />}
                   title="My tickets"
@@ -157,7 +160,7 @@ const ProfilePage = () => {
                   desc="Learn more about what works and what doesn't."
                   href="/profile"
                 />
-              </section>
+              </FlexCol>
             </div>
           </div>
         </div>

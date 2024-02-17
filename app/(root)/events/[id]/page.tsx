@@ -253,9 +253,9 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
         </div>
       </Container>
 
-      {/* EVENTS with the same category */}
+      {/* events with the same category */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <Text extraLarge bold>
+        <Text large bold>
           Related Events
         </Text>
 

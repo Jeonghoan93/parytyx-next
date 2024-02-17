@@ -32,9 +32,9 @@ const Text: React.FC<TextProps> = ({
   whiteSpace,
 }) => {
   let classNames = "";
-  if (extraSmall) classNames += " text-[10pt]";
-  if (small) classNames += " text-[12pt]";
-  if (medium) classNames += " text-[14pt]";
+  if (extraSmall) classNames += " text-[9pt]";
+  if (small) classNames += " text-[11pt]";
+  if (medium) classNames += " text-[13pt]";
   if (large) classNames += " text-[16pt]";
   if (extraLarge) classNames += " text-[18pt]";
   if (bold) classNames += " font-bold";

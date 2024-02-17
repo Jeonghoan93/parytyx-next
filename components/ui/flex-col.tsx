@@ -28,7 +28,7 @@ const FlexCol: React.FC<FlexColProps> = ({
 }) => {
   const className = `flex flex-col gap-${gap} ${items} ${justify} ${
     widthFull ? "w-full" : ""
-  }`;
+  } `;
 
   return <div className={className}>{children}</div>;
 };

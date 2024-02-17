@@ -96,7 +96,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
               Uniting Humanity Through Celebratory Experiences
             </span>
 
-            <Link href="/profile/create">
+            <Link href="/events/create">
               <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
                 List your party
               </span>
@@ -215,7 +215,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
               icon={<FaSpotify size={26} />}
               title={"Import your music taste"}
               desc={
-                "Sync with Spotify to power up your personalised event discovery."
+                "Sync with Spotify to power up your personalised event discovery (coming soon)."
               }
             />
           </FlexCol>

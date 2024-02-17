@@ -2,6 +2,13 @@ import { BiSearch, BiSolidHome } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 
 export const headerLinks = (userId: string) => {
+  const UserAgreedPlatform = (userId: string): boolean => {
+    console.log("isUserAgreedPlatform: ", userId);
+
+    // for now return false
+    return false;
+  };
+
   return [
     {
       label: "Find party",
@@ -9,16 +16,27 @@ export const headerLinks = (userId: string) => {
     },
     {
       label: "List party",
-      route: "/profile/create",
+      route: "/events/create",
     },
     {
       label: "My Profile",
-      route: `/profile/${userId}}`,
+      route: `${
+        UserAgreedPlatform(userId)
+          ? `/profile/${userId}`
+          : "/platform-agreement"
+      }`,
     },
   ];
 };
 
 export const footerLink = (userId: string) => {
+  const UserAgreedPlatform = (userId: string): boolean => {
+    console.log("isUserAgreedPlatform: ", userId);
+
+    // for now return false
+    return false;
+  };
+
   return [
     {
       label: "Home",
@@ -33,7 +51,11 @@ export const footerLink = (userId: string) => {
     {
       label: "Profile",
       icon: BsPersonFill,
-      route: `/profile/${userId}`,
+      route: `${
+        UserAgreedPlatform(userId)
+          ? `/profile/${userId}`
+          : "/platform-agreement"
+      }`,
     },
   ];
 };

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import FlexCol from "../ui/flex-col";
+import FlexRow from "../ui/flex-row";
 import LineContainer from "../ui/line-container";
+import Text from "../ui/text";
 
 interface LinkBoxProps {
   icon: React.ReactNode;
@@ -11,13 +14,17 @@ const LinkBox: React.FC<LinkBoxProps> = ({ icon, title, desc, href }) => {
   return (
     <LineContainer>
       <Link href={href}>
-        <div className="flex flex-row items-center gap-3 cursor-pointer">
-          <span>{icon}</span>
-          <div className="flex flex-col gap-1">
-            <span className="p-semibold-14">{title}</span>
-            <span className="p-regular-12">{desc}</span>
-          </div>
-        </div>
+        <FlexRow gap={4} items="items-center">
+          {icon}
+          <FlexCol gap={1}>
+            <Text semibold small>
+              {title}
+            </Text>
+            <Text extraSmall lighGray>
+              {desc}
+            </Text>
+          </FlexCol>
+        </FlexRow>
       </Link>
     </LineContainer>
   );

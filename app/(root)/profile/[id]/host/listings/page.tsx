@@ -23,7 +23,7 @@ const ListingsPage = async ({ searchParams }: SearchParamProps) => {
         <div className="wrapper flex items-center justify-center sm:justify-between">
           <h3 className="h3-bold text-center sm:text-left">Events Organized</h3>
           <Button asChild size="lg" className="button hidden sm:flex">
-            <Link href="/profile/create">Create New Event</Link>
+            <Link href="/events/create">Create New Event</Link>
           </Button>
         </div>
       </section>
