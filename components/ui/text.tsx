@@ -13,6 +13,7 @@ interface TextProps {
   darkGray?: boolean;
   leadingTight?: boolean;
   underline?: boolean;
+  whiteSpace?: "nowrap" | "normal";
 }
 
 const Text: React.FC<TextProps> = ({
@@ -28,6 +29,7 @@ const Text: React.FC<TextProps> = ({
   darkGray,
   leadingTight,
   underline,
+  whiteSpace,
 }) => {
   let classNames = "";
   if (extraSmall) classNames += " text-[10pt]";
@@ -41,6 +43,7 @@ const Text: React.FC<TextProps> = ({
   if (darkGray) classNames += " text-neutral-700";
   if (leadingTight) classNames += " leading-tight";
   if (underline) classNames += " underline";
+  if (whiteSpace) classNames += ` whitespace-${whiteSpace}`;
 
   return <span className={classNames}>{children}</span>;
 };

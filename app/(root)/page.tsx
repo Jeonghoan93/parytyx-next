@@ -35,6 +35,10 @@ const Home = ({ searchParams }: SearchParamProps) => {
     setHasUserAgreed(true);
   };
 
+  const onClickSearchByCity = () => {
+    console.log("Search by city");
+  };
+
   useEffect(() => {
     if (currentLocation.city) {
       setIsLocationReady(true);
@@ -102,33 +106,58 @@ const Home = ({ searchParams }: SearchParamProps) => {
       </section>
 
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
-        <div className="wrapper grid gap-5 md:gap-10">
+        <div className="wrapper grid gap-4 md:gap-8">
           {isLocationReady ? (
             <FlexRow>
               <Text medium bold>
                 Browsing events in
               </Text>
 
-              <Text medium bold darkGray underline>
-                {currentLocation.city}
-              </Text>
+              <div className="cursor-pointer" onClick={onClickSearchByCity}>
+                <Text medium bold darkGray underline>
+                  {currentLocation.city}
+                </Text>
+              </div>
             </FlexRow>
           ) : (
-            <div onClick={onClickAgreeCurrentLocation}>
+            <div
+              className="cursor-pointer"
+              onClick={onClickAgreeCurrentLocation}
+            >
               <Text small bold darkGray underline>
-                Click here to see events near you
+                Click to show events near you
               </Text>
             </div>
           )}
 
-          <FlexCol>
+          <FlexCol gap={5}>
+            {isLocationReady ? (
+              <Text small lighGray semibold>
+                Events in {currentLocation.city}
+              </Text>
+            ) : (
+              <FlexCol gap={1}>
+                <Text bold large>
+                  Popular events
+                </Text>
+                <div className="cursor-pointer" onClick={onClickSearchByCity}>
+                  <Text extraSmall lighGray semibold underline>
+                    Or choose any city
+                  </Text>
+                </div>
+              </FlexCol>
+            )}
+
             {[1, 7].length > 0 ? (
-              <FlexRow gap={5}>
-                {[1, 7, 4, 4].map((_event, index) => {
+              <FlexRow gap={4}>
+                {["House party", "Rave", "Festival"].map((_event, index) => {
                   return (
-                    <div key={index} className="flex justify-center">
-                      <Text underline extraSmall>
-                        Category {index} {_event}
+                    <div
+                      key={index}
+                      className="cursor-pointer border-[1px] border-b-neutral-200 rounded-xl bg-slate-200 px-3"
+                    >
+                      <Text whiteSpace="nowrap" darkGray extraSmall>
+                        {_event}
                       </Text>
                     </div>
                   );
@@ -138,28 +167,18 @@ const Home = ({ searchParams }: SearchParamProps) => {
               <EmptyState />
             )}
 
-            {isLocationReady && (
-              <>
-                <Text small lighGray semibold>
-                  Events in Stockholm
-                </Text>
-
-                {[1, 7, 3, 3, 4].length > 0 ? (
-                  <FlexRow gap={5}>
-                    {[1, 7, 3, 3, 4].slice(0, 4).map((_event, index) => {
-                      return (
-                        <div key={index} className="flex justify-center">
-                          <div className="p-4">
-                            Event {index} {_event}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </FlexRow>
-                ) : (
-                  <EmptyState />
-                )}
-              </>
+            {events?.data?.length ? (
+              <EventsCollection
+                data={events?.data}
+                emptyTitle="No Events Found"
+                emptyStateSubtext="Come back later"
+                collectionType="All_Events"
+                limit={6}
+                page={page}
+                totalPages={events?.totalPages}
+              />
+            ) : (
+              <EmptyState />
             )}
           </FlexCol>
         </div>
@@ -238,15 +257,19 @@ const Home = ({ searchParams }: SearchParamProps) => {
       <section id="events" className="wrapper my-8 flex flex-col gap-7">
         <span className="p-semibold-20">Upcoming events</span>
 
-        <EventsCollection
-          data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={6}
-          page={page}
-          totalPages={events?.totalPages}
-        />
+        {events?.data?.length ? (
+          <EventsCollection
+            data={events?.data}
+            emptyTitle="No Events Found"
+            emptyStateSubtext="Come back later"
+            collectionType="All_Events"
+            limit={6}
+            page={page}
+            totalPages={events?.totalPages}
+          />
+        ) : (
+          <EmptyState />
+        )}
       </section>
     </>
   );
