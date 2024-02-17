@@ -240,10 +240,10 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
 
                     <Button disabled={isLoading} label="Find ticket" href="/" />
 
-                    <div className="cursor-pointer px-1 py-2 relative text-center">
-                      <span className="text-[11pt] underline text-neutral-800 font-semibold">
+                    <div className="cursor-pointer my-2 text-center underline">
+                      <Text semibold darkGray extraSmall>
                         Share the event with friends
-                      </span>
+                      </Text>
                     </div>
                   </FlexCol>
                 </FlexCol>

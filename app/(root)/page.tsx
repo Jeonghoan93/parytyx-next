@@ -1,13 +1,15 @@
 "use client";
 
+import EmptyState from "@/components/EmptyState";
 import IconTextDesc from "@/components/IconTitleDesc";
 import LoadingState from "@/components/LoadingState";
 import EventsCollection from "@/components/shared/EventsCollection";
-import { Button } from "@/components/ui/button";
 import FlexCol from "@/components/ui/flex-col";
+import FlexRow from "@/components/ui/flex-row";
+import Text from "@/components/ui/text";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import useCurrentLocation from "@/src/hooks/useCurrentLocation";
 import { SearchParamProps } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaRegGrinHearts, FaSpotify } from "react-icons/fa";
@@ -24,6 +26,20 @@ const Home = ({ searchParams }: SearchParamProps) => {
 
   const [events, setEvents] = useState<any>(null);
   const [isLoading, setLoading] = useState(true);
+
+  const [hasUserAgreed, setHasUserAgreed] = useState(false);
+  const [isLocationReady, setIsLocationReady] = useState(false);
+  const currentLocation = useCurrentLocation(hasUserAgreed);
+
+  const onClickAgreeCurrentLocation = () => {
+    setHasUserAgreed(true);
+  };
+
+  useEffect(() => {
+    if (currentLocation.city) {
+      setIsLocationReady(true);
+    }
+  }, [currentLocation]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,31 +102,72 @@ const Home = ({ searchParams }: SearchParamProps) => {
       </section>
 
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
-        <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
-          <div className="flex flex-col justify-center gap-8">
-            <h1 className="h1-bold">Host, Connect, Celebrate</h1>
-            <p className="p-regular-20 md:p-regular-24">
-              Discover the world's best parties with the ultimate connections to
-              DJs, clubs, festivals and events.
-            </p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="#events">Explore Now</Link>
-            </Button>
-          </div>
+        <div className="wrapper grid gap-5 md:gap-10">
+          {isLocationReady ? (
+            <FlexRow>
+              <Text medium bold>
+                Browsing events in
+              </Text>
 
-          <Image
-            src="/assets/images/hero.png"
-            alt="hero"
-            width={1000}
-            height={1000}
-            className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
-          />
+              <Text medium bold darkGray underline>
+                {currentLocation.city}
+              </Text>
+            </FlexRow>
+          ) : (
+            <div onClick={onClickAgreeCurrentLocation}>
+              <Text small bold darkGray underline>
+                Click here to see events near you
+              </Text>
+            </div>
+          )}
+
+          <FlexCol>
+            {[1, 7].length > 0 ? (
+              <FlexRow gap={5}>
+                {[1, 7, 4, 4].map((_event, index) => {
+                  return (
+                    <div key={index} className="flex justify-center">
+                      <Text underline extraSmall>
+                        Category {index} {_event}
+                      </Text>
+                    </div>
+                  );
+                })}
+              </FlexRow>
+            ) : (
+              <EmptyState />
+            )}
+
+            {isLocationReady && (
+              <>
+                <Text small lighGray semibold>
+                  Events in Stockholm
+                </Text>
+
+                {[1, 7, 3, 3, 4].length > 0 ? (
+                  <FlexRow gap={5}>
+                    {[1, 7, 3, 3, 4].slice(0, 4).map((_event, index) => {
+                      return (
+                        <div key={index} className="flex justify-center">
+                          <div className="p-4">
+                            Event {index} {_event}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </FlexRow>
+                ) : (
+                  <EmptyState />
+                )}
+              </>
+            )}
+          </FlexCol>
         </div>
       </section>
 
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-10 md:grid-cols-2">
-          <div className="flex flex-col gap-10">
+          <FlexCol gap={10}>
             <IconTextDesc
               icon={<TbWorld size={26} />}
               title={"The global guide of local scenes"}
@@ -142,9 +199,9 @@ const Home = ({ searchParams }: SearchParamProps) => {
                 "Sync with Spotify to power up your personalised event discovery."
               }
             />
-          </div>
+          </FlexCol>
 
-          <div className="flex flex-col gap-10">
+          <FlexCol gap={10}>
             <IconTextDesc
               icon={<FaRegGrinHearts size={26} />}
               title={"Artist Notifications"}
@@ -174,7 +231,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
                 "Get notified as soon as a ticket to a sold out event becomes available (coming soon)."
               }
             />
-          </div>
+          </FlexCol>
         </div>
       </section>
 
