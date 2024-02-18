@@ -6,9 +6,9 @@ import FlexRow from "../ui/flex-row";
 import Text from "../ui/text";
 import MobileNav from "./MobileNav";
 
-const HeaderEventDetail = () => {
+const HeaderRelative = () => {
   return (
-    <header className="fixed w-full border-b bg-white shadow z-10">
+    <header className="w-full border-b bg-white shadow">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
           <div
@@ -41,4 +41,4 @@ const HeaderEventDetail = () => {
   );
 };
 
-export default HeaderEventDetail;
+export default HeaderRelative;

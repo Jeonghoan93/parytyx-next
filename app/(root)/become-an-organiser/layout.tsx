@@ -12,6 +12,7 @@ export default function EventDetailLayout({
   return (
     <FlexCol>
       <HeaderEventDetail />
+      <div className="pt-[50px]"></div>
       {children}
       <MobileFooterEventDetail />
     </FlexCol>

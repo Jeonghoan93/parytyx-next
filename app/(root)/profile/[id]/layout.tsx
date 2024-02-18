@@ -1,18 +1,18 @@
 "use client";
 
-import HeaderEventDetail from "@/components/shared/HeaderEventDetail";
+import Header from "@/components/shared/Header";
 import MobileFooterEventDetail from "@/components/shared/MobileFooterEventDetail";
 import FlexCol from "@/components/ui/flex-col";
 
-export default function EventDetailLayout({
+export default function ProfileLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <FlexCol>
-      <HeaderEventDetail />
-      {children}
+      <Header />
+      <main className="py-[80px]">{children}</main>
       <MobileFooterEventDetail />
     </FlexCol>
   );

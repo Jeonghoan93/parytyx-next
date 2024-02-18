@@ -1,50 +1,73 @@
 "use client";
 
-import { footerLink } from "@/constants";
+import { getEventById } from "@/lib/actions/event.actions";
+import { formatDateTime } from "@/lib/utils";
 import useHandleScroll from "@/src/hooks/useHandleScroll";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { useEffect, useState } from "react";
+import LoadingState from "../LoadingState";
+import FlexCol from "../ui/flex-col";
+import FlexRow from "../ui/flex-row";
+import Text from "../ui/text";
 
-const MobileFooterEventDetail: React.FC = () => {
+const MobileFooterEventDetail = () => {
   const hideNav = useHandleScroll();
+  const [isLoading, setLoading] = useState(true);
+  const [event, setEvent] = useState<any>(null);
 
   const path = usePathname();
 
+  const eventId = path.split("/")[2];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedEvent = await getEventById(eventId);
+        if (fetchedEvent) {
+          setEvent(fetchedEvent);
+        }
+      } catch (error) {
+        console.error("Failed to fetch event details: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [eventId]);
+
+  const onClickGetInvited = () => {
+    return console.log("Get invited");
+  };
+
+  if (isLoading) {
+    // change this later
+    return <LoadingState />;
+  }
+
   return (
     <div
-      style={{ height: "50px" }}
-      className={`border-t-[2px] fixed bottom-0 w-full bg-gray-50 shadow-md transition-transform duration-500 ${
+      className={`px-6 py-3 max-h-[85px] border-t-[2px] fixed bottom-0 w-full bg-gray-50 shadow-md transition-transform duration-500 ${
         hideNav ? "translate-y-full" : ""
       }`}
     >
-      <div className="flex justify-around items-center h-full px-4">
-        {footerLink("userId").map((link) => {
-          const isActive = path === link.route;
-          const IconComponent = link.icon;
+      <FlexRow items="items-center" justify="justify-between">
+        <FlexCol gap={1}>
+          <Text semibold>SEK {event.price}</Text>
+          <Text semibold small lighGray>
+            {formatDateTime(event.startDateTime).dateOnly}
+          </Text>
+        </FlexCol>
 
-          return (
-            <Link key={link.route} href={link.route}>
-              <li
-                className={`${
-                  isActive && "text-primary-500"
-                } flex flex-col items-center gap-1 cursor-pointer`}
-              >
-                <IconComponent size={18} color={isActive ? "black" : "gray"} />
-                <span
-                  className={`text-[8pt] ${
-                    isActive
-                      ? "text-black font-semibold"
-                      : "text-gray-500 font-light"
-                  } `}
-                >
-                  {link.label}
-                </span>
-              </li>
-            </Link>
-          );
-        })}
-      </div>
+        <span
+          onClick={() => onClickGetInvited()}
+          className="cursor-pointer border-[1px] px-6 py-3 rounded-xl bg-rose-600 bg-gradient-to-r"
+        >
+          <Text small semibold white>
+            Get invited
+          </Text>
+        </span>
+      </FlexRow>
     </div>
   );
 };

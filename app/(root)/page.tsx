@@ -66,6 +66,10 @@ const Home = ({ searchParams }: SearchParamProps) => {
 
   // const isMobile = useWindowWidth() < 768;
 
+  const onClickListParty = () => {
+    return "/events/create";
+  };
+
   if (isLoading) {
     return <LoadingState />;
   }
@@ -97,7 +101,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
                 Uniting Humanity Through Celebratory Experiences
               </span>
 
-              <Link href="/events/create">
+              <Link href={`${onClickListParty()}`}>
                 <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
                   List your party
                 </span>

@@ -94,16 +94,8 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
 
   return (
     <>
-      {isMobile ? (
-        <section
-          className="
-          w-full shadow-md mt-3
-        "
-        >
-          <img src={event.imageUrl} className="w-full h-[30vh]" alt="Image" />
-        </section>
-      ) : (
-        <div className="pt-5"></div>
+      {isMobile && (
+        <img src={event.imageUrl} className="w-full h-[30vh]" alt="Image" />
       )}
 
       <Container>
