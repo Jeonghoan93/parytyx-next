@@ -1,3 +1,4 @@
+import NewEventForm from "@/components/shared/NewEventForm";
 import { auth } from "@clerk/nextjs";
 
 const BecomeOrganiserPage = () => {
@@ -8,7 +9,7 @@ const BecomeOrganiserPage = () => {
   return (
     <div className="wrapper my-2">
       hi
-      {/* <NewEventForm userId={userId} type="Create" /> */}
+      <NewEventForm userId={userId} type="Create" />
     </div>
   );
 };

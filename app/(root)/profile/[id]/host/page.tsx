@@ -1,5 +1,5 @@
-import IconItemCard from "@/components/profile/IconItemCard";
-import PhotoItemCard from "@/components/profile/PhotoItemCard";
+import IconItemCard from "@/components/root/profile/IconItemCard";
+import PhotoItemCard from "@/components/root/profile/PhotoItemCard";
 import LinkBox from "@/components/shared/LinkBox";
 import Container from "@/components/ui/container";
 import { auth } from "@clerk/nextjs";

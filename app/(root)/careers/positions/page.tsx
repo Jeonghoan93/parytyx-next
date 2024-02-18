@@ -1,6 +1,6 @@
 "use client";
 
-import JobList from "@/components/careers/JobList";
+import JobList from "@/components/root/careers/JobList";
 import { useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 

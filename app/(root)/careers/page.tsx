@@ -1,4 +1,4 @@
-import SimplePhotoCard from "@/components/careers/SimplePhotoCard";
+import SimplePhotoCard from "@/components/root/careers/SimplePhotoCard";
 import Container from "@/components/ui/container";
 import LineContainer from "@/components/ui/line-container";
 import Link from "next/link";

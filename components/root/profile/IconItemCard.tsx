@@ -1,5 +1,5 @@
 import React from "react";
-import LineContainer from "../ui/line-container";
+import LineContainer from "../../ui/line-container";
 
 interface IconItemCardProps {
   icon: React.ReactNode;
