@@ -24,8 +24,8 @@ const Careerspage = () => {
       "
           >
             <div className="flex flex-col gap-3 col-span-4 mb-3">
-              <LineContainer dark={true}>
-                <div className="text-gray-50 p-3">
+              <LineContainer>
+                <div className="p-3">
                   <div className="flex flex-col gap-6">
                     <span
                       style={{ maxWidth: "400px" }}

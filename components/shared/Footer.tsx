@@ -86,7 +86,7 @@ const Footer = () => {
 
       <FlexCol gap={3}>
         <Text small semibold>
-          Download apps
+          Download mobile apps
         </Text>
 
         <FlexRow gap={3}>

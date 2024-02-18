@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   const isMobile = useWindowWidth() < 768;
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col overflow-x-hidden">
       <Header />
 
       <main className="pt-[54pt]">{children}</main>
