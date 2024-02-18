@@ -46,7 +46,7 @@ const Events = ({ searchParams }: SearchParamProps) => {
 
   return (
     <>
-      <section id="events" className="wrapper flex flex-col gap-4 md:gap-12">
+      <section className="wrapper flex flex-col gap-4 md:gap-12">
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
           <CategoryFilter />

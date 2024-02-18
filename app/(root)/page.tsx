@@ -181,7 +181,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
         </div>
       </section>
 
-      <section id="events" className="wrapper my-8 flex flex-col gap-7">
+      <section className="wrapper my-8 flex flex-col gap-7">
         <span className="p-semibold-20">Upcoming events</span>
 
         {events?.data?.length ? (
