@@ -3,8 +3,6 @@ import { BsPersonFill } from "react-icons/bs";
 
 export const headerLinks = (userId: string) => {
   const UserAgreedPlatform = (userId: string): boolean => {
-    console.log("isUserAgreedPlatform: ", userId);
-
     // for now return false
     return false;
   };
@@ -31,8 +29,6 @@ export const headerLinks = (userId: string) => {
 
 export const footerLink = (userId: string) => {
   const UserAgreedPlatform = (userId: string): boolean => {
-    console.log("isUserAgreedPlatform: ", userId);
-
     // for now return false
     return false;
   };

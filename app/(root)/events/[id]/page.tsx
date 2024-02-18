@@ -19,6 +19,10 @@ import { useWindowWidth } from "@/src/hooks/useWindowWidth";
 import { SearchParamProps } from "@/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { CiTimer } from "react-icons/ci";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { IoTicketOutline } from "react-icons/io5";
+import { LuCalendarHeart } from "react-icons/lu";
 import { MdLocationPin } from "react-icons/md";
 
 const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
@@ -37,6 +41,13 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
   const [totalPrice, setTotalPrice] = useState<number>(
     event ? event.price * guestCount : 0
   );
+  const [showMap, setShowMap] = useState(false);
+  const [hasEventsWithSameOrganiser, _setHasEventsWithSameOrganiser] =
+    useState(false);
+
+  const onClickShowMap = () => () => {
+    setShowMap(!showMap);
+  };
 
   useEffect(() => {
     setTotalPrice(event ? event.price * guestCount : 0);
@@ -55,6 +66,13 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
           });
 
           setRelatedEvents(fetchedRelatedEvents);
+
+          // TODO: check if the organizer has more events
+          // const hasMoreEvents = await checkIfOrganizerHasMoreEvents(
+          //   fetchedEvent.organizer._id
+          // );
+
+          // setHasEventsWithSameOrganiser(hasMoreEvents.length > 1);
         }
       } catch (error) {
         console.error("Failed to fetch event details: ", error);
@@ -118,26 +136,16 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
             <div className="flex flex-col gap-3 col-span-4 mb-3">
               <LineContainer>
                 <FlexCol items="items-start">
-                  <FlexRow>
-                    <Text semibold extraSmall darkGray>
-                      {formatDateTime(event.startDateTime).dateOnly} -{" "}
-                      {formatDateTime(event.startDateTime).timeOnly}
-                    </Text>
-                    -
-                    <Text semibold extraSmall darkGray>
-                      {formatDateTime(event.endDateTime).dateOnly} -{" "}
-                      {formatDateTime(event.endDateTime).timeOnly}
-                    </Text>
-                  </FlexRow>
+                  <Text semibold small lighGray>
+                    {formatDateTime(event.startDateTime).dateOnly}
+                  </Text>
 
                   <Text bold extraLarge>
                     {event.title}
                   </Text>
-
                   <Text semibold small>
                     {event.category.name}
                   </Text>
-
                   <FlexCol>
                     <Text semibold extraSmall>
                       {event.description}
@@ -147,45 +155,70 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
               </LineContainer>
 
               <LineContainer>
-                <FlexCol items="items-start">
-                  <FlexRow items="items-center">
-                    <MdLocationPin />
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    Date & Time
+                  </Text>
 
-                    <Text semibold small>
-                      {event.location}
-                    </Text>
+                  <FlexRow items="items-start" gap={4}>
+                    <LuCalendarHeart size={18} />
+
+                    <FlexRow>
+                      <Text semibold extraSmall darkGray>
+                        {formatDateTime(event.startDateTime).dateOnly} -{" "}
+                        {formatDateTime(event.startDateTime).timeOnly}
+                      </Text>
+                      -
+                      <Text semibold extraSmall darkGray>
+                        {formatDateTime(event.endDateTime).dateOnly} -{" "}
+                        {formatDateTime(event.endDateTime).timeOnly}
+                      </Text>
+                    </FlexRow>
                   </FlexRow>
-
-                  <div>Implement Map here...</div>
                 </FlexCol>
               </LineContainer>
 
               <LineContainer>
-                <FlexRow justify="justify-between" items="items-center">
-                  <FlexCol items="items-start">
-                    <Text small semibold>
-                      hosted by {event.organizer.firstName}{" "}
-                      {event.organizer.lastName}
-                    </Text>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    Location
+                  </Text>
 
-                    <Text extraSmall small lighGray>
-                      {event.url}
-                    </Text>
+                  <FlexRow items="items-start" gap={4}>
+                    <MdLocationPin size={18} />
 
-                    <span>number of people joining...?</span>
-                  </FlexCol>
+                    <FlexCol items="items-start">
+                      <Text semibold small>
+                        {event.location.toUpperCase()}
+                      </Text>
 
-                  {/* Navigate to user profile and add user photo */}
-                  <Link href={"/"}>
-                    <img
-                      className="rounded-full"
-                      height="40"
-                      width="40"
-                      alt="Avatar"
-                      src={"/assets/images/placeholder.jpg"}
-                    />
-                  </Link>
-                </FlexRow>
+                      <div
+                        className="cursor-pointer"
+                        onClick={onClickShowMap()}
+                      >
+                        {!showMap ? (
+                          <FlexRow items="items-center" gap={1}>
+                            <span className="text-blue-700 p-semibold-14">
+                              Show map
+                            </span>
+
+                            <FaAngleDown color={"blue"} size={16} />
+                          </FlexRow>
+                        ) : (
+                          <FlexRow items="items-center" gap={1}>
+                            <span className="text-blue-700 p-semibold-14">
+                              Hide map
+                            </span>
+
+                            <FaAngleUp color={"blue"} size={16} />
+                          </FlexRow>
+                        )}
+                      </div>
+                    </FlexCol>
+                  </FlexRow>
+
+                  {showMap && <div>Implement Map here...</div>}
+                </FlexCol>
               </LineContainer>
             </div>
 
@@ -193,6 +226,9 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
               className="
                 md:order-last 
                 md:col-span-3
+                gap-3
+                flex
+                flex-col
               "
             >
               <LineContainer>
@@ -248,10 +284,110 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                   </FlexCol>
                 </FlexCol>
               </LineContainer>
+
+              <LineContainer>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    About this event
+                  </Text>
+
+                  <FlexCol gap={3}>
+                    <FlexRow items="items-center">
+                      <CiTimer />
+                      <Text semibold small darkGray>
+                        2 hours
+                      </Text>
+                    </FlexRow>
+
+                    <FlexRow items="items-center">
+                      <IoTicketOutline />
+                      <Text semibold small darkGray>
+                        Mobile eTicket
+                      </Text>
+                    </FlexRow>
+                  </FlexCol>
+
+                  <Text small>
+                    Glimpses Within: Practical Life Lessons from the chronicles
+                    of the Prophet Muhammad (saw): Dealing with Stress, Grief,
+                    Depression & Challenges in Life
+                  </Text>
+                </FlexCol>
+              </LineContainer>
+
+              <LineContainer>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    Refund Policy
+                  </Text>
+
+                  <Text small lighGray>
+                    Contact the organizer to request a refund. PartyX's fee is
+                    nonrefundable.
+                  </Text>
+                </FlexCol>
+              </LineContainer>
+
+              <LineContainer>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    About the organizer
+                  </Text>
+
+                  <FlexRow
+                    justify="justify-between"
+                    items="items-center"
+                    widthFull
+                  >
+                    <FlexCol items="items-start">
+                      <FlexRow gap={1}>
+                        <Text small>Hosted by</Text>
+
+                        <Text small semibold darkGray>
+                          {event.organizer.firstName} {event.organizer.lastName}
+                        </Text>
+                      </FlexRow>
+
+                      <Text extraSmall small lighGray>
+                        {event.url}
+                      </Text>
+                    </FlexCol>
+
+                    {/* Navigate to user profile and add user photo */}
+                    <Link href={"/"}>
+                      <img
+                        className="rounded-full"
+                        height="40"
+                        width="40"
+                        alt="Avatar"
+                        src={"/assets/images/placeholder.jpg"}
+                      />
+                    </Link>
+                  </FlexRow>
+                </FlexCol>
+              </LineContainer>
             </div>
           </div>
         </div>
       </Container>
+
+      {hasEventsWithSameOrganiser && (
+        <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+          <Text large bold>
+            More events from this organizer
+          </Text>
+
+          <Collection
+            data={relatedEvents?.data}
+            emptyTitle="No Events Found"
+            emptyStateSubtext="Come back later"
+            collectionType="All_Events"
+            limit={3}
+            page={searchParams.page as string}
+            totalPages={relatedEvents?.totalPages}
+          />
+        </section>
+      )}
 
       {/* events with the same category */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">

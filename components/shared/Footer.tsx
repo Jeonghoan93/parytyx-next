@@ -56,7 +56,7 @@ const Footer = () => {
   ];
 
   return (
-    <section className="wrapper my-10 flex flex-col gap-10">
+    <footer className="wrapper my-10 flex flex-col gap-10">
       <FlexCol>
         <Link href={"/"}>
           <Text leading medium semibold>
@@ -130,7 +130,7 @@ const Footer = () => {
           <NavigationItem key={index} label={label} path={path} />
         ))}
       </FlexCol>
-    </section>
+    </footer>
   );
 };
 
