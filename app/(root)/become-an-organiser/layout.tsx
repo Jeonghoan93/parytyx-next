@@ -1,7 +1,7 @@
 "use client";
 
 import HeaderEventDetail from "@/components/shared/HeaderEventDetail";
-import MobileFooterEventDetail from "@/components/shared/MobileFooterEventDetail";
+import MobileFooter from "@/components/shared/MobileFooter";
 import FlexCol from "@/components/ui/flex-col";
 
 export default function EventDetailLayout({
@@ -14,7 +14,7 @@ export default function EventDetailLayout({
       <HeaderEventDetail />
       <div className="pt-[50px]"></div>
       {children}
-      <MobileFooterEventDetail />
+      <MobileFooter />
     </FlexCol>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/shared/Header";
-import MobileFooterEventDetail from "@/components/shared/MobileFooterEventDetail";
+import MobileFooter from "@/components/shared/MobileFooter";
 import FlexCol from "@/components/ui/flex-col";
 
 export default function EventsLayout({
@@ -13,7 +13,7 @@ export default function EventsLayout({
     <FlexCol>
       <Header />
       <main className="py-[70px]">{children}</main>
-      <MobileFooterEventDetail />
+      <MobileFooter />
     </FlexCol>
   );
 }
