@@ -108,17 +108,25 @@ const Home = ({ searchParams }: SearchParamProps) => {
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid gap-4 md:gap-8">
           {isLocationReady ? (
-            <FlexRow>
-              <Text medium bold>
-                Browsing events in
-              </Text>
+            <FlexCol gap={1}>
+              <FlexRow>
+                <Text medium bold>
+                  Browsing events in
+                </Text>
+
+                <div className="cursor-pointer" onClick={onClickSearchByCity}>
+                  <Text medium bold darkGray underline>
+                    {currentLocation.city}
+                  </Text>
+                </div>
+              </FlexRow>
 
               <div className="cursor-pointer" onClick={onClickSearchByCity}>
-                <Text medium bold darkGray underline>
-                  {currentLocation.city}
+                <Text extraSmall lighGray semibold underline>
+                  Or choose another city
                 </Text>
               </div>
-            </FlexRow>
+            </FlexCol>
           ) : (
             <div
               className="cursor-pointer"
@@ -131,11 +139,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
           )}
 
           <FlexCol gap={5}>
-            {isLocationReady ? (
-              <Text small lighGray semibold>
-                Events in {currentLocation.city}
-              </Text>
-            ) : (
+            {!isLocationReady && (
               <FlexCol gap={1}>
                 <Text bold large>
                   Popular events

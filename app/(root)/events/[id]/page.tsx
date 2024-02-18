@@ -220,6 +220,36 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                   {showMap && <div>Implement Map here...</div>}
                 </FlexCol>
               </LineContainer>
+
+              <LineContainer>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    About this event
+                  </Text>
+
+                  <FlexCol gap={3}>
+                    <FlexRow items="items-center">
+                      <CiTimer />
+                      <Text semibold small darkGray>
+                        2 hours
+                      </Text>
+                    </FlexRow>
+
+                    <FlexRow items="items-center">
+                      <IoTicketOutline />
+                      <Text semibold small darkGray>
+                        Mobile eTicket
+                      </Text>
+                    </FlexRow>
+                  </FlexCol>
+
+                  <Text small>
+                    Glimpses Within: Practical Life Lessons from the chronicles
+                    of the Prophet Muhammad (saw): Dealing with Stress, Grief,
+                    Depression & Challenges in Life
+                  </Text>
+                </FlexCol>
+              </LineContainer>
             </div>
 
             <div
@@ -288,36 +318,6 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
               <LineContainer>
                 <FlexCol items="items-start" gap={4}>
                   <Text bold medium darkGray>
-                    About this event
-                  </Text>
-
-                  <FlexCol gap={3}>
-                    <FlexRow items="items-center">
-                      <CiTimer />
-                      <Text semibold small darkGray>
-                        2 hours
-                      </Text>
-                    </FlexRow>
-
-                    <FlexRow items="items-center">
-                      <IoTicketOutline />
-                      <Text semibold small darkGray>
-                        Mobile eTicket
-                      </Text>
-                    </FlexRow>
-                  </FlexCol>
-
-                  <Text small>
-                    Glimpses Within: Practical Life Lessons from the chronicles
-                    of the Prophet Muhammad (saw): Dealing with Stress, Grief,
-                    Depression & Challenges in Life
-                  </Text>
-                </FlexCol>
-              </LineContainer>
-
-              <LineContainer>
-                <FlexCol items="items-start" gap={4}>
-                  <Text bold medium darkGray>
                     Refund Policy
                   </Text>
 
@@ -372,7 +372,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
       </Container>
 
       {hasEventsWithSameOrganiser && (
-        <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+        <section className="wrapper my-4 mx-2 flex flex-col gap-6 md:gap-8">
           <Text large bold>
             More events from this organizer
           </Text>
@@ -390,7 +390,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
       )}
 
       {/* events with the same category */}
-      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+      <section className="wrapper my-4 mx-2 flex flex-col gap-6 md:gap-8">
         <Text large bold>
           Related Events
         </Text>
