@@ -1,10 +1,7 @@
-"use client";
-
 import IconTextDesc from "@/components/IconTitleDesc";
-import LoadingState from "@/components/LoadingState";
+import MainPhoto from "@/components/root/MainPhoto";
 import FlexCol from "@/components/ui/flex-col";
-import Link from "next/link";
-import { useState } from "react";
+import { auth } from "@clerk/nextjs";
 import { FaRegGrinHearts, FaSpotify } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoTicketOutline } from "react-icons/io5";
@@ -12,46 +9,14 @@ import { MdSecurityUpdateGood, MdTravelExplore } from "react-icons/md";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { TbWorld } from "react-icons/tb";
 
-const About = () => {
-  // For now no data but we can add some later
-  const [isLoading, _setLoading] = useState(false);
+const About = async () => {
+  const { sessionClaims } = auth();
 
-  if (isLoading) {
-    return <LoadingState />;
-  }
+  const userId = sessionClaims?.userId as string;
 
   return (
     <>
-      <section className="w-full h-[40vh] overflow-hidden  border-neutral-200 shadow relative">
-        <section className="w-full h-[40vh] overflow-hidden relative">
-          <img
-            src="/assets/images/techno.jpg"
-            style={{ width: "100%", height: "100%" }}
-            className="object-cover w-full"
-            alt="Image"
-          />
-          <div className={"absolute inset-0 bg-black opacity-40"}></div>{" "}
-          {/* This div acts as the overlay */}
-        </section>
-
-        <section
-          style={{ width: "100%", height: "100%", top: 0, left: 0 }}
-          className="absolute object-cover w-full items-center justify-center flex flex-col gap-4 z-1"
-        >
-          <FlexCol items="items-center" gap={4}>
-            <span className=" text-gray-50 p-bold-20">Art</span>
-            <span className="shadow-text p-medium-14">
-              Uniting Humanity Through Celebratory Experiences
-            </span>
-
-            <Link href="/events/create">
-              <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
-                List your party
-              </span>
-            </Link>
-          </FlexCol>
-        </section>
-      </section>
+      <MainPhoto userId={userId} />
 
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-10 md:grid-cols-2">

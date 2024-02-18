@@ -13,7 +13,8 @@ export default function EventsLayout({
   return (
     <FlexCol>
       <Header />
-      <main className="py-[60px]">{children}</main>
+
+      {children}
 
       <Footer />
 

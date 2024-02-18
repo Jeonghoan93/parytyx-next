@@ -95,7 +95,7 @@ const ProfilePage = () => {
                             Jimmy
                           </Text>
 
-                          <Text extraSmall lighGray>
+                          <Text extraSmall lightGray>
                             Met at a conference
                           </Text>
                         </div>

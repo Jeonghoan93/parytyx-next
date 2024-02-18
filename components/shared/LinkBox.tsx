@@ -20,7 +20,7 @@ const LinkBox: React.FC<LinkBoxProps> = ({ icon, title, desc, href }) => {
             <Text semibold small>
               {title}
             </Text>
-            <Text extraSmall lighGray>
+            <Text extraSmall lightGray>
               {desc}
             </Text>
           </FlexCol>

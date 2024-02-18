@@ -94,30 +94,21 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
 
   return (
     <>
-      {isMobile && (
-        <img src={event.imageUrl} className="w-full h-[30vh]" alt="Image" />
-      )}
-
       <Container>
-        <FlexCol gap={4}>
-          {!isMobile ? (
-            <section
-              className="
-          w-full
-          h-[50vh]
-          overflow-hidden 
-          rounded-xl
-          relative
-        "
-            >
-              <img
-                src={event.imageUrl}
-                style={{ width: "100%", height: "100%" }}
-                className="object-cover w-full"
-                alt="Image"
-              />
-            </section>
-          ) : null}
+        <FlexCol gap={2}>
+          <section
+            className={`w-full
+            overflow-hidden 
+            rounded-xl
+            relative ${isMobile ? "  h-[37vh]" : "  h-[43vh]"}`}
+          >
+            <img
+              src={event.imageUrl}
+              style={{ width: "100%", height: "100%" }}
+              className="object-cover w-full"
+              alt="Image"
+            />
+          </section>
 
           <div
             className="
@@ -130,7 +121,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
             <div className="flex flex-col gap-3 col-span-4 mb-3">
               <LineContainer>
                 <FlexCol items="items-start">
-                  <Text semibold small lighGray>
+                  <Text semibold small lightGray>
                     {formatDateTime(event.startDateTime).dateOnly}
                   </Text>
 
@@ -315,7 +306,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                     Refund Policy
                   </Text>
 
-                  <Text small lighGray>
+                  <Text small lightGray>
                     Contact the organizer to request a refund. PartyX's fee is
                     nonrefundable.
                   </Text>
@@ -342,7 +333,7 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                         </Text>
                       </FlexRow>
 
-                      <Text extraSmall small lighGray>
+                      <Text extraSmall small lightGray>
                         {event.url}
                       </Text>
                     </FlexCol>

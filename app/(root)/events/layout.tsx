@@ -12,7 +12,7 @@ export default function EventsLayout({
   return (
     <FlexCol>
       <Header />
-      <main className="py-[70px]">{children}</main>
+      {children}
       <MobileFooter />
     </FlexCol>
   );

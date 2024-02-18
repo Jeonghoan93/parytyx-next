@@ -9,7 +9,7 @@ interface TextProps {
   extraLarge?: boolean;
   bold?: boolean;
   semibold?: boolean;
-  lighGray?: boolean;
+  lightGray?: boolean;
   darkGray?: boolean;
   white?: boolean;
   leadingTight?: boolean;
@@ -27,7 +27,7 @@ const Text: React.FC<TextProps> = ({
   extraLarge,
   bold,
   semibold,
-  lighGray,
+  lightGray,
   darkGray,
   leadingTight,
   underline,
@@ -43,7 +43,7 @@ const Text: React.FC<TextProps> = ({
   if (extraLarge) classNames += " text-[18pt]";
   if (bold) classNames += " font-bold";
   if (semibold) classNames += " font-semibold";
-  if (lighGray) classNames += " text-neutral-500";
+  if (lightGray) classNames += " text-neutral-500";
   if (darkGray) classNames += " text-neutral-700";
   if (leadingTight) classNames += " leading-tight";
   if (underline) classNames += " underline";

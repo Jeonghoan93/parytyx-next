@@ -12,7 +12,7 @@ export default function ProfileLayout({
   return (
     <FlexCol>
       <Header />
-      <main className="py-[80px]">{children}</main>
+      {children}
       <MobileFooter />
     </FlexCol>
   );

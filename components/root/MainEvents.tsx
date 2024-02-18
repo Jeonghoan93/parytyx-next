@@ -88,7 +88,7 @@ const MainEvents = ({
               </FlexRow>
 
               <div className="cursor-pointer" onClick={onClickSearchByCity}>
-                <Text extraSmall lighGray semibold underline>
+                <Text extraSmall lightGray semibold underline>
                   Or choose another city
                 </Text>
               </div>
@@ -111,7 +111,7 @@ const MainEvents = ({
                   Popular events
                 </Text>
                 <div className="cursor-pointer" onClick={onClickSearchByCity}>
-                  <Text extraSmall lighGray semibold underline>
+                  <Text extraSmall lightGray semibold underline>
                     Or choose any city
                   </Text>
                 </div>

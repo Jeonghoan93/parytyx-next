@@ -1,7 +1,7 @@
 "use client";
 
-import HeaderEventDetail from "@/components/shared/HeaderEventDetail";
-import MobileFooter from "@/components/shared/MobileFooter";
+import FooterBecomeOrganiser from "@/components/root/become-an-organiser/Footer";
+import HeaderBecomeOrganiser from "@/components/root/become-an-organiser/HeaderBecomeOrganiser";
 import FlexCol from "@/components/ui/flex-col";
 
 export default function EventDetailLayout({
@@ -11,10 +11,10 @@ export default function EventDetailLayout({
 }) {
   return (
     <FlexCol>
-      <HeaderEventDetail />
+      <HeaderBecomeOrganiser />
       <div className="pt-[50px]"></div>
       {children}
-      <MobileFooter />
+      <FooterBecomeOrganiser />
     </FlexCol>
   );
 }

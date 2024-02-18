@@ -5,7 +5,7 @@ import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
-    <header className="fixed w-full border-b bg-white shadow z-10">
+    <header className="w-full border-b bg-white shadow">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
           <span className={"cursor-pointer font-extrabold text-[14pt]"}>

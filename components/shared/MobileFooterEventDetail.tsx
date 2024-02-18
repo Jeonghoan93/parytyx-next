@@ -51,7 +51,7 @@ const MobileFooterEventDetail = () => {
         <FlexRow items="items-center" justify="justify-between">
           <FlexCol gap={1}>
             <Text semibold>SEK {event.price}</Text>
-            <Text semibold small lighGray>
+            <Text semibold small lightGray>
               {formatDateTime(event.startDateTime).dateOnly}
             </Text>
           </FlexCol>
