@@ -102,10 +102,12 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
         >
           <img src={event.imageUrl} className="w-full h-[30vh]" alt="Image" />
         </section>
-      ) : null}
+      ) : (
+        <div className="pt-5"></div>
+      )}
 
       <Container>
-        <div className="flex flex-col gap-4 mt-7">
+        <FlexCol gap={4}>
           {!isMobile ? (
             <section
               className="
@@ -368,43 +370,53 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
               </LineContainer>
             </div>
           </div>
-        </div>
+        </FlexCol>
       </Container>
 
-      {hasEventsWithSameOrganiser && (
-        <section className="wrapper my-4 mx-2 flex flex-col gap-6 md:gap-8">
-          <Text large bold>
-            More events from this organizer
-          </Text>
+      <div className="pt-10 pb-20">
+        <Container>
+          <FlexCol gap={6}>
+            {!hasEventsWithSameOrganiser && (
+              <LineContainer empty>
+                <FlexCol gap={4}>
+                  <Text large bold>
+                    More events from this organizer
+                  </Text>
 
-          <Collection
-            data={relatedEvents?.data}
-            emptyTitle="No Events Found"
-            emptyStateSubtext="Come back later"
-            collectionType="All_Events"
-            limit={3}
-            page={searchParams.page as string}
-            totalPages={relatedEvents?.totalPages}
-          />
-        </section>
-      )}
+                  <Collection
+                    data={relatedEvents?.data}
+                    emptyTitle="No Events Found"
+                    emptyStateSubtext="Come back later"
+                    collectionType="All_Events"
+                    limit={3}
+                    page={searchParams.page as string}
+                    totalPages={relatedEvents?.totalPages}
+                  />
+                </FlexCol>
+              </LineContainer>
+            )}
 
-      {/* events with the same category */}
-      <section className="wrapper my-4 mx-2 flex flex-col gap-6 md:gap-8">
-        <Text large bold>
-          Related Events
-        </Text>
+            <LineContainer empty>
+              {/* events with the same category */}
+              <FlexCol gap={4}>
+                <Text large bold>
+                  Related Events
+                </Text>
 
-        <Collection
-          data={relatedEvents?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={3}
-          page={searchParams.page as string}
-          totalPages={relatedEvents?.totalPages}
-        />
-      </section>
+                <Collection
+                  data={relatedEvents?.data}
+                  emptyTitle="No Events Found"
+                  emptyStateSubtext="Come back later"
+                  collectionType="All_Events"
+                  limit={3}
+                  page={searchParams.page as string}
+                  totalPages={relatedEvents?.totalPages}
+                />
+              </FlexCol>
+            </LineContainer>
+          </FlexCol>
+        </Container>
+      </div>
     </>
   );
 };

@@ -1,16 +1,16 @@
 interface LineContainerProps {
   children: React.ReactNode;
-  dark?: boolean;
+  empty?: boolean;
 }
 
-const LineContainer: React.FC<LineContainerProps> = ({ children, dark }) => {
+const LineContainer: React.FC<LineContainerProps> = ({ children, empty }) => {
   return (
     <div
-      className={`p-4 ${
-        dark
-          ? "bg-black text-white border-neutral-800"
-          : "bg-gray-50 border-neutral-200"
-      } rounded-lg shadow border-[1px] `}
+      className={` ${
+        empty
+          ? "p-2 border-t-2 border-neutral-200 border-dashed"
+          : "bg-gray-50 border-neutral-200 border-[1px] shadow rounded-lg p-4"
+      }    `}
     >
       {children}
     </div>
