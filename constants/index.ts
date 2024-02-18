@@ -1,32 +1,6 @@
 import { BiSearch, BiSolidHome } from "react-icons/bi";
 import { BsPersonFill } from "react-icons/bs";
 
-export const headerLinks = (userId: string) => {
-  const UserAgreedPlatform = (userId: string): boolean => {
-    // for now return false
-    return false;
-  };
-
-  return [
-    {
-      label: "Find party",
-      route: "/events",
-    },
-    {
-      label: "List party",
-      route: "/events/create",
-    },
-    {
-      label: "My Profile",
-      route: `${
-        UserAgreedPlatform(userId)
-          ? `/profile/${userId}`
-          : "/platform-agreement"
-      }`,
-    },
-  ];
-};
-
 export const footerLink = (userId: string) => {
   const UserAgreedPlatform = (userId: string): boolean => {
     // for now return false

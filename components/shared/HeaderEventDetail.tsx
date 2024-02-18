@@ -1,19 +1,29 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { BiChevronLeft } from "react-icons/bi";
 import { Button } from "../ui/button";
+import FlexRow from "../ui/flex-row";
+import Text from "../ui/text";
 import MobileNav from "./MobileNav";
 
-const Header = () => {
+const HeaderEventDetail = () => {
   return (
     <header className="fixed w-full border-b bg-white shadow z-10">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
-          <span className={"cursor-pointer font-extrabold text-[14pt]"}>
-            PARTYX
-          </span>
-        </Link>
+          <div
+            className="cursor-pointer items-center"
+            onClick={() => window.history.back()}
+          >
+            <FlexRow gap={1} items="items-center">
+              <BiChevronLeft size={20} />
 
-        <SignedIn></SignedIn>
+              <Text bold small>
+                Back
+              </Text>
+            </FlexRow>
+          </div>
+        </Link>
 
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>
@@ -31,4 +41,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderEventDetail;
