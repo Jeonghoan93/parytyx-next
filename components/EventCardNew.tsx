@@ -32,7 +32,7 @@ const EventCardNew: React.FC<EventCardNewProps> = ({ eventData }) => {
             hover:shadow-lg
           "
         >
-          <Link href={`/events/${eventData._id}`}>
+          <Link href={`/event/${eventData._id}`}>
             <img
               className="
               object-cover 
