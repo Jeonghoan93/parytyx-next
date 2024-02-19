@@ -9,42 +9,45 @@ const ListPartyButton = ({ userId }: { userId: string }) => {
   const [isUserOrganiser, setIsUserOrganiser] = useState<boolean | undefined>(
     false
   );
-
-  const onClickListParty = async (
-    userId: string
-  ): Promise<boolean | undefined> => {
-    setIsLoading(true);
-    try {
-      const user = await getUserById(userId);
-
-      if (user && user.isOrganiser === undefined) {
-        console.error("isOrganiser is not defined for this user.");
-      }
-
-      return user.isOrganiser;
-    } catch (error) {
-      console.error("Failed to update user:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean | undefined>(
+    false
+  );
 
   useEffect(() => {
-    const checkIsOrganiser = async () => {
-      setIsUserOrganiser(await onClickListParty(userId));
+    const onClickListParty = async (userId: string): Promise<void> => {
+      setIsLoading(true);
+      try {
+        const user = await getUserById(userId);
+        setIsUserLoggedIn(!!user);
+        if (user) {
+          setIsUserOrganiser(user.isOrganiser);
+        } else {
+          console.error("User not found or not logged in");
+        }
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    checkIsOrganiser();
-  }, [userId]);
+    onClickListParty(userId);
+  }, [userId, isUserLoggedIn, isUserOrganiser]);
+
+  const navigate = (): string => {
+    if (!isUserLoggedIn) {
+      return "organise";
+    }
+
+    if (isUserOrganiser !== undefined && isUserOrganiser === true) {
+      return "events/create";
+    }
+
+    return "become-an-organiser";
+  };
 
   return (
-    <Link
-      href={`${
-        isUserOrganiser !== undefined && isUserOrganiser === true
-          ? "/events/create"
-          : "/become-an-organiser"
-      }`}
-    >
+    <Link href={`${navigate()}`}>
       <span className="cursor-pointer border-[1pt] bg-white text-gray-800 rounded-xl py-2 px-4 border-gray-50 shadow p-medium-14 sm:p-semibold-14">
         {isLoading ? "Loading..." : "List your party"}
       </span>

@@ -9,7 +9,7 @@ const BecomeOrganiserPage = () => {
   // const userId = sessionClaims?.userId as string;
 
   return (
-    <div className="wrapper">
+    <div className="wrapper h-screen sm:h-full">
       <div
         className={
           "flex flex-col gap-10 sm:flex-row sm:items-center sm:h-[70vh] sm:justify-between"

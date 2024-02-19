@@ -29,7 +29,7 @@ const MainPhoto = ({ userId }: { userId: string }) => {
         className="absolute object-cover w-full items-center justify-center flex flex-col gap-4 z-1"
       >
         <FlexCol items="items-center" gap={6}>
-          <span className="shadow-text p-medium-14">
+          <span className="shadow-text p-medium-14 text-white">
             Uniting Humanity Through Celebratory Experiences
           </span>
 

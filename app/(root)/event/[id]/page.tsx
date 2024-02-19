@@ -235,83 +235,6 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                   </Text>
                 </FlexCol>
               </LineContainer>
-            </div>
-
-            <div
-              className="
-                md:order-last 
-                md:col-span-3
-                gap-3
-                flex
-                flex-col
-              "
-            >
-              <LineContainer>
-                <FlexCol items="items-start" gap={5}>
-                  <FlexRow items="items-center">
-                    <Text bold medium darkGray>
-                      From
-                    </Text>
-                    <Text medium>SEK {event.price}</Text>
-                  </FlexRow>
-
-                  <FlexRow justify="justify-between" widthFull>
-                    <label
-                      htmlFor="guestCount"
-                      className="font-medium text-neutral-600"
-                    >
-                      Guests:
-                    </label>
-
-                    <select
-                      id="guestCount"
-                      value={guestCount}
-                      onChange={(e) => setGuestCount(Number(e.target.value))}
-                      className="bg-neutral-100 border rounded-md p-1"
-                    >
-                      {[...Array(7)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1}
-                        </option>
-                      ))}
-                    </select>
-                  </FlexRow>
-
-                  <hr />
-
-                  <FlexRow justify="justify-between">
-                    <Text bold medium darkGray>
-                      Total
-                    </Text>
-                    <Text medium>SEK {totalPrice}</Text>
-                  </FlexRow>
-
-                  <FlexCol widthFull={true}>
-                    <CheckoutButton event={event} />
-
-                    <Button disabled={isLoading} label="Find ticket" href="/" />
-
-                    <div className="cursor-pointer my-2 text-center underline">
-                      <Text semibold darkGray extraSmall>
-                        Share the event with friends
-                      </Text>
-                    </div>
-                  </FlexCol>
-                </FlexCol>
-              </LineContainer>
-
-              <LineContainer>
-                <FlexCol items="items-start" gap={4}>
-                  <Text bold medium darkGray>
-                    Refund Policy
-                  </Text>
-
-                  <Text small lightGray>
-                    Contact the organizer to request a refund. PartyX's fee is
-                    nonrefundable.
-                  </Text>
-                </FlexCol>
-              </LineContainer>
 
               <LineContainer>
                 <FlexCol items="items-start" gap={4}>
@@ -349,6 +272,89 @@ const EventDetails = ({ params: { id }, searchParams }: SearchParamProps) => {
                       />
                     </Link>
                   </FlexRow>
+                </FlexCol>
+              </LineContainer>
+            </div>
+
+            <div
+              className="
+                md:order-last 
+                md:col-span-3
+                gap-3
+                flex
+                flex-col
+              "
+            >
+              {!isMobile && (
+                <LineContainer>
+                  <FlexCol items="items-start" gap={5}>
+                    <FlexRow items="items-center">
+                      <Text bold medium darkGray>
+                        From
+                      </Text>
+                      <Text medium>SEK {event.price}</Text>
+                    </FlexRow>
+
+                    <FlexRow justify="justify-between" widthFull>
+                      <label
+                        htmlFor="guestCount"
+                        className="font-medium text-neutral-600"
+                      >
+                        Guests:
+                      </label>
+
+                      <select
+                        id="guestCount"
+                        value={guestCount}
+                        onChange={(e) => setGuestCount(Number(e.target.value))}
+                        className="bg-neutral-100 border rounded-md p-1"
+                      >
+                        {[...Array(7)].map((_, i) => (
+                          <option key={i} value={i + 1}>
+                            {i + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </FlexRow>
+
+                    <hr />
+
+                    <FlexRow justify="justify-between">
+                      <Text bold medium darkGray>
+                        Total
+                      </Text>
+                      <Text medium>SEK {totalPrice}</Text>
+                    </FlexRow>
+
+                    <FlexCol widthFull={true}>
+                      <CheckoutButton event={event} />
+
+                      <Button
+                        disabled={isLoading}
+                        label="Find ticket"
+                        href="/"
+                      />
+
+                      <div className="cursor-pointer my-2 text-center underline">
+                        <Text semibold darkGray extraSmall>
+                          Share the event with friends
+                        </Text>
+                      </div>
+                    </FlexCol>
+                  </FlexCol>
+                </LineContainer>
+              )}
+
+              <LineContainer>
+                <FlexCol items="items-start" gap={4}>
+                  <Text bold medium darkGray>
+                    Refund Policy
+                  </Text>
+
+                  <Text small lightGray>
+                    Contact the organizer to request a refund. PartyX's fee is
+                    nonrefundable.
+                  </Text>
                 </FlexCol>
               </LineContainer>
             </div>

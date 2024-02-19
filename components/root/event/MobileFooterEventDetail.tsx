@@ -2,15 +2,13 @@
 
 import { getEventById } from "@/lib/actions/event.actions";
 import { formatDateTime } from "@/lib/utils";
-import useHandleScroll from "@/src/hooks/useHandleScroll";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import FlexCol from "../ui/flex-col";
-import FlexRow from "../ui/flex-row";
-import Text from "../ui/text";
+import FlexCol from "../../ui/flex-col";
+import FlexRow from "../../ui/flex-row";
+import Text from "../../ui/text";
 
 const MobileFooterEventDetail = () => {
-  const hideNav = useHandleScroll();
   const [isLoading, setLoading] = useState(true);
   const [event, setEvent] = useState<any>(null);
 
@@ -41,9 +39,7 @@ const MobileFooterEventDetail = () => {
 
   return (
     <div
-      className={`px-6 py-3 max-h-[85px] border-t-[2px] fixed bottom-0 w-full bg-gray-50 shadow-md transition-transform duration-500 ${
-        hideNav ? "translate-y-full" : ""
-      }`}
+      className={`px-6 py-3 max-h-[85px] border-t-[2px] fixed bottom-0 w-full bg-gray-50 shadow-md transition-transform duration-500 `}
     >
       {isLoading ? (
         <Text semibold>Loading ...</Text>

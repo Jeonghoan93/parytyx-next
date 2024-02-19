@@ -5,6 +5,7 @@ export default authMiddleware({
     "/",
     "/events",
     "/about",
+    "/organise",
     "/event/:id",
     "/api/webhooks(.*)",
     "/api/webhook/clerk",
