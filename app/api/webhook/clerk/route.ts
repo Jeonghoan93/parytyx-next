@@ -80,6 +80,7 @@ export async function POST(req: Request) {
       firstName: "",
       lastName: "",
       photo: "",
+      isOrganiser: false,
     };
 
     const newUser = await createUser(user);

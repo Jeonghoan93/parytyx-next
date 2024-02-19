@@ -5,7 +5,7 @@ export type CreateUserParams = {
   lastName: string;
   email: string;
   photo: string;
-  isOrganiser: boolean;
+  isOrganiser?: boolean;
 };
 
 export type UpdateUserParams = {
