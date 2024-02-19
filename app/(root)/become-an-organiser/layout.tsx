@@ -1,6 +1,6 @@
 "use client";
 
-import FooterBecomeOrganiser from "@/components/root/become-an-organiser/Footer";
+import FooterBecomeOrganiser from "@/components/root/become-an-organiser/FooterBecomeOrganiser";
 import HeaderBecomeOrganiser from "@/components/root/become-an-organiser/HeaderBecomeOrganiser";
 import FlexCol from "@/components/ui/flex-col";
 

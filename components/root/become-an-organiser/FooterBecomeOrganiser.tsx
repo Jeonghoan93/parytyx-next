@@ -17,7 +17,7 @@ const FooterBecomeOrganiser: React.FC = () => {
         }`}
       >
         <span
-          className={`rounded-lg border-[1px] shadow py-3 px-6 text-center bg-rose-600 bg-opacity-95 ${
+          className={`cursor-pointer rounded-lg border-[1px] shadow py-3 px-6 text-center bg-rose-600 bg-opacity-95 ${
             isMobile ? "w-full" : ""
           }`}
         >
