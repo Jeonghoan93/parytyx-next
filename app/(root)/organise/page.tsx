@@ -69,8 +69,14 @@ const OrganisePage = () => {
               <FlexCol gap={0}>
                 <Text semibold>Stockholm</Text>
                 <FlexRow gap={1}>
-                  <Text extraSmall> 15 guests</Text>
-                  <Text extraSmall> 10 times</Text>
+                  <Text extraSmall lightGray>
+                    {" "}
+                    15 guests
+                  </Text>
+                  <Text extraSmall lightGray>
+                    {" "}
+                    10 times
+                  </Text>
                 </FlexRow>
               </FlexCol>
             </FlexRow>

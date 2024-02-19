@@ -1,8 +1,8 @@
 "use client";
 
 import { useWindowWidth } from "@/src/hooks/useWindowWidth";
+import ListPartyButton from "../shared/ListPartyButton";
 import FlexCol from "../ui/flex-col";
-import ListPartyButton from "./ListPartyButton";
 
 const MainPhoto = ({ userId }: { userId: string }) => {
   const isMobile = useWindowWidth() < 768;

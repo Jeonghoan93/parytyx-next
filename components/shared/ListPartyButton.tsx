@@ -16,14 +16,17 @@ const ListPartyButton = ({ userId }: { userId: string }) => {
   useEffect(() => {
     const onClickListParty = async (userId: string): Promise<void> => {
       setIsLoading(true);
+
       try {
         const user = await getUserById(userId);
+
         setIsUserLoggedIn(!!user);
+
         if (user) {
           setIsUserOrganiser(user.isOrganiser);
-        } else {
-          console.error("User not found or not logged in");
         }
+
+        return;
       } catch (error) {
         console.error("Failed to fetch user:", error);
       } finally {
